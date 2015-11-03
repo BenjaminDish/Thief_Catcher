@@ -1,0 +1,60 @@
+<resources>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+
+    <!-- pref pour le choix du theme sonore -->
+    <string name="pref_title_theme_sonore">Thème sonore</string>
+    <string-array name="pref_example_list_titles">
+        <item>Thème 1</item>
+        <item>Thème 2</item>
+        <item>Thème 3</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+
+    <!-- string pour le slider -->
+    <string name="settings_dialog_message">Permet de régler la sensibilité du capteur de mouvement</string>
+    <string name="settings_summary">Valeur courante : $1 %</string>
+    <string name="settings_unit">%</string>
+    <string name="settings_title">Sensibilité du capteur de mouvement</string>
+
+   <!-- string pour le sliderlist -->
+    <string name="time_limit_pref">Temps entre le moment où l\'utilisateur \"active\" son alarme et le moment où elle est réellement active</string>
+    <string name="summaries">Temps entre le moment où l\'utilisateur \"active\" son alarme et le moment où elle est réellement active</string>
+    <string-array name="timeListArray">
+        <item>1 Seconde</item>
+        <item>2 Secondes</item>
+        <item>3 Secondes</item>
+        <item>4 Secondes</item>
+        <item>5 Secondes</item>
+        <item>6 Secondes</item>
+        <item>7 Secondes</item>
+        <item>8 Secondes</item>
+        <item>9 Secondes</item>
+        <item>10 Secondes</item>
+    </string-array>
+
+    <!--This is going to be in seconds-->
+    <string-array name="timeListValues">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
+
+</resources>
+
+

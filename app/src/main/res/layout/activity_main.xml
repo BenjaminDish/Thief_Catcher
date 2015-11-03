@@ -1,0 +1,113 @@
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e8e8e8">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Modes de déclenchement"
+        android:id="@+id/textViewModeSelection"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.72"
+        android:gravity="bottom|center_horizontal"
+        android:textColor="#5450ad" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.6"
+        android:gravity="center"
+        android:layout_margin="1dp">
+
+        <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/toggleButtonMove"
+            android:layout_weight="1"
+            android:checked="false"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:clickable="true"
+            android:elegantTextHeight="false"
+            android:enabled="true"
+            android:focusable="false"
+            android:textOff=" "
+            android:textOn=" "
+            android:singleLine="false"
+            android:padding="10dp" />
+
+        <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/toggleButtonCharge"
+            android:layout_weight="1"
+            android:layout_margin="15dp"
+            android:textOff=" "
+            android:textOn=" "
+            android:text=" "
+            android:enabled="true"
+            android:clickable="true"
+            android:padding="10dp" />
+
+        <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:id="@+id/toggleButtonSms"
+            android:layout_weight="1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="15dp"
+            android:textOn=" "
+            android:textOff=" "
+            android:enabled="true"
+            android:clickable="true"
+            android:padding="10dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Click To Lock"
+        android:id="@+id/textViewInfoUnlock"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.75"
+        android:gravity="bottom|center_horizontal"
+        android:textColor="#b1b1b1" />
+
+    <ImageButton
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/imageButtonLock"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.6"
+        android:layout_marginLeft="200dp"
+        android:layout_marginRight="200dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="#e8e8e8"
+        android:clickable="true" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="UNLOCKED"
+        android:id="@+id/textViewLocked"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.7"
+        android:gravity="top|center_horizontal" />
+</LinearLayout>
+
