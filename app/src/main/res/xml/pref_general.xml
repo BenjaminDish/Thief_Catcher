@@ -1,38 +1,76 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
-         dismiss it. -->
-    <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+    <!-- Theme sonore -->
     <ListPreference
-        android:key="example_list"
-        android:title="@string/pref_title_theme_sonore"
+        android:key="theme_sonore"
+        android:title="@string/pref_theme_sonore_title"
         android:defaultValue="1"
-        android:entries="@array/pref_example_list_titles"
-        android:entryValues="@array/pref_example_list_values"
+        android:entries="@array/pref_theme_sonore_entries"
+        android:entryValues="@array/pref_theme_sonore_entries_values"
+        android:summary="@string/pref_theme_sonore_summary"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null" />
+
+
+    <!-- Slider sensibilité mouvement -->
+    <com.example.benjamin.thief_catcher.SeekBarPreference
+        android:key="slider_mouvement"
+        android:title="@string/pref_slider_mouvement_title"
+        android:defaultValue="50"
+        android:dialogMessage="@string/pref_slider_mouvement_dialog_message"
+        android:max="100"
+        android:summary="@string/pref_slider_mouvement_summary"
+        android:text="@string/pref_slider_mouvement_unit" />
+
+
+    <!-- Slider delai activation -->
+    <com.example.benjamin.thief_catcher.SeekBarListPreference
+        android:key="slider_activation"
+        android:title="@string/pref_slider_activation_title"
+        android:defaultValue="0"
+        android:dialogMessage="@string/pref_slider_activation_dialog_message"
+        android:entries="@array/pref_slider_activation_entries"
+        android:entryValues="@array/pref_slider_activation_entries_values"
+        android:summary="@string/pref_slider_activation_summary" />
+
+
+    <!-- Slider delai de déclenchement -->
+    <com.example.benjamin.thief_catcher.SeekBarListPreference
+        android:key="slider_déclenchement"
+        android:title="@string/pref_slider_déclenchement_title"
+        android:defaultValue="0"
+        android:dialogMessage="@string/pref_slider_déclenchement_dialog_message"
+        android:entries="@array/pref_slider_déclenchement_entries"
+        android:entryValues="@array/pref_slider_déclenchement_entries_values"
+        android:summary="@string/pref_slider_déclenchement_summary" />
+
+    <!-- Choix du SMS d'activation -->
+    <ListPreference
+        android:key="sms"
+        android:title="@string/pref_SMS_title"
+        android:defaultValue="1"
+        android:entries="@array/pref_SMS_entries"
+        android:entryValues="@array/pref_SMS_entries_values"
+        android:summary="@string/pref_SMS_summary"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null" />
 
 
 
-    <com.example.benjamin.thiefcatcher.SeekBarPreference
-        android:defaultValue="50"
-        android:dialogMessage="@string/settings_dialog_message"
-        android:key="SEEKBAR_VALUE"
-        android:max="100"
-        android:summary="@string/settings_summary"
-        android:text="@string/settings_unit"
-        android:title="@string/settings_title" />
+    <!-- Choix du message à afficher -->
+    <EditTextPreference
+        android:key="text_alarme"
+        android:title="@string/pref_texte_alarme_title"
+        android:summary="@string/pref_texte_alarme_summary" />
 
-
-    <com.example.benjamin.thiefcatcher.SeekBarListPreference
-        android:defaultValue="0"
-        android:dialogMessage="@string/time_limit_pref"
-        android:entries="@array/timeListArray"
-        android:entryValues="@array/timeListValues"
-        android:key="time"
-        android:summary="salut"
-        android:title="Délai d'activation"
+    <EditTextPreference
+        android:key="pin"
+        android:title="@string/pref_PIN_title"
+        android:summary="@string/pref_PIN_summary"
+        android:dialogMessage="@string/pref_PIN_dialog_message"
+        android:inputType="numberPassword"
+        android:maxLength="4"
         />
 
 </PreferenceScreen>

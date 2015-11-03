@@ -1,15 +1,3 @@
-
-
-/* The following code was written by Matthew Wiggins
- * and is released under the APACHE 2.0 license
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Improvements :
- * - save the value on positive button click, not on seekbar change
- * - handle @string/... values in xml file
- */
-
 package com.example.benjamin.thief_catcher;
 
         import android.app.AlertDialog;

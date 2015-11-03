@@ -3,31 +3,34 @@
 
     <!-- Strings related to Settings -->
 
-
-    <!-- pref pour le choix du theme sonore -->
-    <string name="pref_title_theme_sonore">Thème sonore</string>
-    <string-array name="pref_example_list_titles">
+    <!-- string pour le choix du theme sonore -->
+    <string name="pref_theme_sonore_title">Thème sonore</string>
+    <string name="pref_theme_sonore_summary">Choix du son de l\'alarme</string>
+    <string-array name="pref_theme_sonore_entries">
         <item>Thème 1</item>
         <item>Thème 2</item>
         <item>Thème 3</item>
     </string-array>
-    <string-array name="pref_example_list_values">
+    <string-array name="pref_theme_sonore_entries_values">
         <item>1</item>
         <item>2</item>
         <item>3</item>
     </string-array>
 
 
-    <!-- string pour le slider -->
-    <string name="settings_dialog_message">Permet de régler la sensibilité du capteur de mouvement</string>
-    <string name="settings_summary">Valeur courante : $1 %</string>
-    <string name="settings_unit">%</string>
-    <string name="settings_title">Sensibilité du capteur de mouvement</string>
+    <!-- string pour le slider mouvement -->
+    <string name="pref_slider_mouvement_title">Sensibilité du capteur de mouvement</string>
+    <string name="pref_slider_mouvement_dialog_message">Permet de régler la sensibilité du capteur de mouvement</string>
+    <string name="pref_slider_mouvement_summary">Valeur courante : $1 %</string>
+    <string name="pref_slider_mouvement_unit">%</string>
 
-   <!-- string pour le sliderlist -->
-    <string name="time_limit_pref">Temps entre le moment où l\'utilisateur \"active\" son alarme et le moment où elle est réellement active</string>
-    <string name="summaries">Temps entre le moment où l\'utilisateur \"active\" son alarme et le moment où elle est réellement active</string>
-    <string-array name="timeListArray">
+
+    <!-- string pour le slider activation -->
+    <string name="pref_slider_activation_title">Délai d\'activation</string>
+    <string name="pref_slider_activation_dialog_message">Temps entre le moment où l\'utilisateur \"active\" son alarme et le moment où elle est réellement active</string>
+    <string name="pref_slider_activation_summary">Valeur courante : $1 s</string>
+    <string-array name="pref_slider_activation_entries">
+        <item>0 Seconde</item>
         <item>1 Seconde</item>
         <item>2 Secondes</item>
         <item>3 Secondes</item>
@@ -39,9 +42,8 @@
         <item>9 Secondes</item>
         <item>10 Secondes</item>
     </string-array>
-
-    <!--This is going to be in seconds-->
-    <string-array name="timeListValues">
+    <string-array name="pref_slider_activation_entries_values">
+        <item>0</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -53,6 +55,62 @@
         <item>9</item>
         <item>10</item>
     </string-array>
+
+    <!-- string pour le slider de déclenchement -->
+    <string name="pref_slider_déclenchement_title">Délai de déclenchement</string>
+    <string name="pref_slider_déclenchement_dialog_message">Temps entre le moment où le besoin de déclencher l\'alarme est détecté et le lancement effectif de l\'effet de l\'alarme</string>
+    <string name="pref_slider_déclenchement_summary">Valeur courante : $1 s</string>
+    <string-array name="pref_slider_déclenchement_entries">
+        <item>0 Seconde</item>
+        <item>1 Seconde</item>
+        <item>2 Secondes</item>
+        <item>3 Secondes</item>
+        <item>4 Secondes</item>
+        <item>5 Secondes</item>
+        <item>6 Secondes</item>
+        <item>7 Secondes</item>
+        <item>8 Secondes</item>
+        <item>9 Secondes</item>
+        <item>10 Secondes</item>
+    </string-array>
+    <string-array name="pref_slider_déclenchement_entries_values">
+        <item>Seconde</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
+    <!-- string pour le choix du SMS -->
+    <string name="pref_SMS_title">Choix du SMS d\'activation</string>
+    <string name="pref_SMS_summary">Choix du sms à envoyer pour déclencher l\'alarme</string>
+    <string-array name="pref_SMS_entries">
+        <item>ring + code PIN</item>
+        <item>activate + code PIN</item>
+        <item>block + code PIN</item>
+    </string-array>
+    <string-array name="pref_SMS_entries_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+
+    <!-- string pour le choix du texte alarme -->
+    <string name="pref_texte_alarme_title">Choix du texte affiché par l\'alarme</string>
+    <string name="pref_texte_alarme_summary">Valeur courante : $1</string>
+
+    <!-- string pour le choix du code PIN -->
+    <string name="pref_PIN_title">Choix du code PIN pour dévérouiller l\'alarme</string>
+    <string name="pref_PIN_summary">Valeur courante : </string>
+    <string name="pref_PIN_dialog_message">4 caractère max</string>
+
 
 
 </resources>
