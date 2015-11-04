@@ -2,19 +2,15 @@ package com.example.benjamin.thief_catcher;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.TextView;
+import android.widget.ImageButton;
 
 import com.example.benjamin.thief_catcher.util.SystemUiHider;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -22,11 +18,9 @@ import java.util.TimerTask;
  *
  * @see SystemUiHider
  */
-public class ActivationActivity extends Activity {
+public class AlarmActivity extends Activity {
 
-    Timer chrono = new Timer();
-    Integer activationTime = 10;
-    TextView textViewCompteur;
+    ImageButton imageButtonUnlock;
 
     /**
      * Whether or not the system UI should be auto-hidden after
@@ -63,7 +57,7 @@ public class ActivationActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.activity_activation);
+        setContentView(R.layout.activity_alarm);
 
         final View contentView = findViewById(R.id.fullscreen_content);
 
@@ -99,27 +93,9 @@ public class ActivationActivity extends Activity {
             }
         });
 
-        textViewCompteur = (TextView) this.findViewById(R.id.textViewCompteur);
-        majTextCompteur();
+        imageButtonUnlock = (ImageButton) this.findViewById(R.id.imageButtonUnlock);
+        imageButtonUnlock.setImageResource(R.drawable.unlockicon);
 
-        //On programme cette tâche toutes les secondes
-        chrono.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (activationTime > 0) {
-                            activationTime--;
-                            majTextCompteur();
-                        } else {
-                            startActivity(new Intent(ActivationActivity.this, AlarmActivity.class));
-                            chrono.cancel();
-                        }
-                    }
-                });
-            }
-        }, (long) 1000.0, (long) 1000.0);
     }
 
     @Override
@@ -147,9 +123,5 @@ public class ActivationActivity extends Activity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
-    }
-
-    private void majTextCompteur(){
-        textViewCompteur.setText(activationTime.toString());
     }
 }
