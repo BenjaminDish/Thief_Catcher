@@ -1,0 +1,41 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="#bababa"
+    tools:context="com.example.benjamin.thief_catcher.AlarmActivity">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView android:id="@+id/fullscreen_content" android:layout_width="fill_parent"
+            android:layout_height="fill_parent" android:keepScreenOn="true" android:textColor="#e5dede"
+            android:textStyle="bold" android:textSize="20dp" android:gravity="center"
+            android:text="L&apos;alarme est activée\n Appuyez pour delocker"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/imageButtonUnlock"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="UNLOCK"
+            android:id="@+id/textViewUnlock"
+            android:layout_weight="1"
+            android:textSize="20dp"
+            android:gravity="center_vertical|center_horizontal" />
+    </LinearLayout>
+
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+
+</FrameLayout>
