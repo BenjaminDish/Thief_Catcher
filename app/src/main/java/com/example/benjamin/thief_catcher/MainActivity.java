@@ -20,6 +20,8 @@ import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Salut c'est dish
+
     ImageButton imageButtonLock;
     ToggleButton toggleButtonMove;
     ToggleButton toggleButtonSms;
