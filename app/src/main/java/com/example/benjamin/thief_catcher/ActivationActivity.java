@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -27,6 +28,7 @@ import java.util.TimerTask;
 public class ActivationActivity extends Activity {
 
     Timer chrono = new Timer();
+    TimerTask task;
     Integer activationTime;
     TextView textViewCompteur;
     SharedPreferences sharedPref;
@@ -109,8 +111,7 @@ public class ActivationActivity extends Activity {
         textViewCompteur = (TextView) this.findViewById(R.id.textViewCompteur);
         majTextCompteur();
 
-        //On programme cette tâche toutes les secondes
-        chrono.schedule(new TimerTask() {
+        task = new TimerTask() {
             @Override
             public void run() {
                 runOnUiThread(new Runnable() {
@@ -126,7 +127,23 @@ public class ActivationActivity extends Activity {
                     }
                 });
             }
-        }, (long) 1000.0, (long) 1000.0);
+        };
+
+
+        //On programme cette tâche toutes les secondes
+        chrono.schedule(task,(long)1000.0,(long)1000.0);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            task.cancel();
+            chrono.cancel();
+            this.finish();
+        }
+         return super.onKeyDown(keyCode, event);
     }
 
     @Override
