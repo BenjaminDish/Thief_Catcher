@@ -111,6 +111,7 @@ public class ActivationActivity extends Activity {
         textViewCompteur = (TextView) this.findViewById(R.id.textViewCompteur);
         majTextCompteur();
 
+        // Met à jour le label du nombre de secondes restantes avant activation de l'alarme
         task = new TimerTask() {
             @Override
             public void run() {
@@ -123,6 +124,7 @@ public class ActivationActivity extends Activity {
                         } else {
                             startActivity(new Intent(ActivationActivity.this, AlarmActivity.class));
                             chrono.cancel();
+                            ActivationActivity.this.finish();
                         }
                     }
                 });
