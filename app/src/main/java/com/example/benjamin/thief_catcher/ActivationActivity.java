@@ -3,9 +3,11 @@ package com.example.benjamin.thief_catcher;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -25,8 +27,9 @@ import java.util.TimerTask;
 public class ActivationActivity extends Activity {
 
     Timer chrono = new Timer();
-    Integer activationTime = 10;
+    Integer activationTime;
     TextView textViewCompteur;
+    SharedPreferences sharedPref;
 
     /**
      * Whether or not the system UI should be auto-hidden after
@@ -59,6 +62,10 @@ public class ActivationActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+        activationTime = Integer.parseInt(sharedPref.getString("slider_activation", "5"));
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
