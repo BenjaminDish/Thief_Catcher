@@ -131,7 +131,6 @@ public class ActivationActivity extends Activity {
             }
         };
 
-
         //On programme cette tâche toutes les secondes
         chrono.schedule(task,(long)1000.0,(long)1000.0);
     }

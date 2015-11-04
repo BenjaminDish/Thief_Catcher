@@ -2,9 +2,11 @@ package com.example.benjamin.thief_catcher;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -96,6 +98,12 @@ public class AlarmActivity extends Activity {
         imageButtonUnlock = (ImageButton) this.findViewById(R.id.imageButtonUnlock);
         imageButtonUnlock.setImageResource(R.drawable.unlockicon);
 
+        imageButtonUnlock.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                D_UnLockClicked();
+            }
+        });
+
     }
 
     @Override
@@ -106,6 +114,14 @@ public class AlarmActivity extends Activity {
         // created, to briefly hint to the user that UI controls
         // are available.
         delayedHide(100);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     Handler mHideHandler = new Handler();
@@ -123,5 +139,11 @@ public class AlarmActivity extends Activity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    }
+
+    private void D_UnLockClicked() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }
