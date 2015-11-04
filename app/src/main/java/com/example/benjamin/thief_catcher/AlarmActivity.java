@@ -2,7 +2,9 @@ package com.example.benjamin.thief_catcher;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,6 +24,7 @@ import com.example.benjamin.thief_catcher.util.SystemUiHider;
  */
 public class AlarmActivity extends Activity {
 
+    private BroadcastReceiver mReceiver;
     ImageButton imageButtonUnlock;
 
     /**
@@ -145,5 +148,25 @@ public class AlarmActivity extends Activity {
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        IntentFilter intentFilter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
+
+        mReceiver = new SMSReceiver();
+
+        this.registerReceiver(mReceiver, intentFilter);
+    }
+
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //unregister our receiver
+        this.unregisterReceiver(this.mReceiver);
     }
 }
