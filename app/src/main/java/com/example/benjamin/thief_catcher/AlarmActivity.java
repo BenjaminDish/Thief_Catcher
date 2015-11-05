@@ -25,7 +25,11 @@ import com.example.benjamin.thief_catcher.util.SystemUiHider;
 public class AlarmActivity extends Activity {
 
     private BroadcastReceiver mReceiver;
-    ImageButton imageButtonUnlock;
+    private ImageButton imageButtonUnlock;
+    private Alarm alarm;
+    Boolean useCharge;
+    Boolean useMove;
+    Boolean useSms;
 
     /**
      * Whether or not the system UI should be auto-hidden after
@@ -145,6 +149,7 @@ public class AlarmActivity extends Activity {
     }
 
     private void D_UnLockClicked() {
+        alarm.stop();
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
@@ -154,11 +159,22 @@ public class AlarmActivity extends Activity {
     protected void onStart() {
         super.onStart();
 
-        IntentFilter intentFilter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
+        //Récupération des variales passées par la mainActivity
+        if(getIntent().getExtras() != null){
+            useCharge = getIntent().getBooleanExtra("useCharge", false);
+            useMove = getIntent().getBooleanExtra("useMove", false);
+            useSms = getIntent().getBooleanExtra("useSms", false);
+        }
 
-        mReceiver = new SMSReceiver();
+        // Création de l'alarme
+        alarm = new Alarm();
 
-        this.registerReceiver(mReceiver, intentFilter);
+        // Ecoute des sms reçus
+        if(useSms){
+            IntentFilter intentFilter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
+            mReceiver = new SMSReceiver(alarm);
+            this.registerReceiver(mReceiver, intentFilter);
+        }
     }
 
 

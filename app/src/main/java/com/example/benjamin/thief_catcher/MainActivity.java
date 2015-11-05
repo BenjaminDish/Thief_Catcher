@@ -23,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
     ToggleButton toggleButtonMove;
     ToggleButton toggleButtonSms;
     ToggleButton toggleButtonCharge;
-    Boolean useMove = false;
-    Boolean useCharge = false;
-    Boolean useSms = false;
+    public Boolean useMove = false;
+    public Boolean useCharge = false;
+    public Boolean useSms = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +114,9 @@ public class MainActivity extends AppCompatActivity {
             // Le premier paramètre est le nom de l'activité actuelle
             // Le second est le nom de l'activité de destination
             Intent secondeActivite = new Intent(MainActivity.this, SettingsActivity.class);
+            secondeActivite.putExtra("useCharge", useCharge);
+            secondeActivite.putExtra("useMove", useMove);
+            secondeActivite.putExtra("useSms", useSms);
             startActivity(secondeActivite);
             return true;
         }
