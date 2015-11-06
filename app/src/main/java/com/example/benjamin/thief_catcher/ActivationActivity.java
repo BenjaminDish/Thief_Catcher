@@ -32,6 +32,9 @@ public class ActivationActivity extends Activity {
     Integer activationTime;
     TextView textViewCompteur;
     SharedPreferences sharedPref;
+    Boolean useCharge;
+    Boolean useMove;
+    Boolean useSms;
 
     /**
      * Whether or not the system UI should be auto-hidden after
@@ -108,6 +111,13 @@ public class ActivationActivity extends Activity {
             }
         });
 
+        //Récupération des variales passées par la mainActivity
+        if(getIntent().getExtras() != null){
+            useCharge = getIntent().getBooleanExtra("useCharge", false);
+            useMove = getIntent().getBooleanExtra("useMove", false);
+            useSms = getIntent().getBooleanExtra("useSms", false);
+        }
+
         textViewCompteur = (TextView) this.findViewById(R.id.textViewCompteur);
         majTextCompteur();
 
@@ -122,7 +132,11 @@ public class ActivationActivity extends Activity {
                             activationTime--;
                             majTextCompteur();
                         } else {
-                            startActivity(new Intent(ActivationActivity.this, AlarmActivity.class));
+                            Intent thirdActivity = new Intent(ActivationActivity.this, AlarmActivity.class);
+                            thirdActivity.putExtra("useCharge", useCharge);
+                            thirdActivity.putExtra("useMove", useMove);
+                            thirdActivity.putExtra("useSms", useSms);
+                            startActivity(thirdActivity);
                             chrono.cancel();
                             ActivationActivity.this.finish();
                         }

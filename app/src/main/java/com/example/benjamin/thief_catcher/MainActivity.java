@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
     ToggleButton toggleButtonMove;
     ToggleButton toggleButtonSms;
     ToggleButton toggleButtonCharge;
-    Boolean useMove = false;
-    Boolean useCharge = false;
-    Boolean useSms = false;
+    public Boolean useMove = false;
+    public Boolean useCharge = false;
+    public Boolean useSms = false;
 
 
 
@@ -136,6 +136,10 @@ public class MainActivity extends AppCompatActivity {
         useSms = isChecked;
     }
     private void D_LockClicked(){
+        Intent activationIntent = new Intent(this, ActivationActivity.class);
+        activationIntent.putExtra("useCharge", useCharge);
+        activationIntent.putExtra("useMove", useMove);
+        activationIntent.putExtra("useSms", useSms);
         if (useCharge) {
             IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
             Intent batteryStatus = registerReceiver(null, filter);
@@ -146,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                 case BatteryManager.BATTERY_STATUS_CHARGING:
                 case BatteryManager.BATTERY_STATUS_FULL:
                     // Le téléphone est branché
-                    startActivity(new Intent(this, ActivationActivity.class));
+                    startActivity(activationIntent);
                     break;
                 default:
                     //Le téléphone n'est pas branché
@@ -155,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
-            startActivity(new Intent(this, ActivationActivity.class));
+            startActivity(activationIntent);
         }
     }
 

@@ -1,7 +1,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:background="#bababa"
-    tools:context="com.example.benjamin.thief_catcher.AlarmActivity">
+    tools:context="com.example.benjamin.thief_catcher.AlarmActivity"
+    android:id="@+id/frameAlarm">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
@@ -12,7 +13,7 @@
         android:layout_height="match_parent">
 
         <TextView android:id="@+id/fullscreen_content" android:layout_width="fill_parent"
-            android:layout_height="fill_parent" android:keepScreenOn="true" android:textColor="#e5dede"
+            android:layout_height="fill_parent" android:keepScreenOn="true"
             android:textStyle="bold" android:textSize="20dp" android:gravity="center"
             android:text="L&apos;alarme est activée\n Appuyez pour delocker"
             android:layout_weight="1" />

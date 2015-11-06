@@ -14,8 +14,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
-
+import android.widget.TextView;
 
 import com.example.benjamin.thief_catcher.util.SystemUiHider;
 
@@ -28,12 +29,16 @@ import com.example.benjamin.thief_catcher.util.SystemUiHider;
 public class AlarmActivity extends AppCompatActivity {
 
     private BroadcastReceiver mReceiver;
-    ImageButton imageButtonUnlock;
     private EditTextDialogFragment dial;
     private FragmentManager fragmentManager;
     private SharedPreferences sharedPref;
     private Intent intent;
-
+    private ImageButton imageButtonUnlock;
+    Boolean useCharge;
+    Boolean useMove;
+    Boolean useSms;
+    private FrameLayout frameAlarm;
+    private TextView message;
 
     /**
      * Whether or not the system UI should be auto-hidden after
@@ -73,6 +78,9 @@ public class AlarmActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_alarm);
 
+        frameAlarm = (FrameLayout) findViewById(R.id.frameAlarm);
+        message = (TextView) findViewById(R.id.fullscreen_content);
+
         final View contentView = findViewById(R.id.fullscreen_content);
 
         // Set up an instance of SystemUiHider to control the system UI for
@@ -106,6 +114,8 @@ public class AlarmActivity extends AppCompatActivity {
                 }
             }
         });
+
+
 
         fragmentManager = getFragmentManager();
 
@@ -157,23 +167,29 @@ public class AlarmActivity extends AppCompatActivity {
 
     private void D_UnLockClicked() {
 
-
-
         dial = new EditTextDialogFragment();
         dial.show(fragmentManager, "edit");
-
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        IntentFilter intentFilter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
+        Alarm.initiate(frameAlarm,message);
 
-        mReceiver = new SMSReceiver();
+        //Récupération des variales passées par la mainActivity
+        if(getIntent().getExtras() != null){
+            useCharge = getIntent().getBooleanExtra("useCharge", false);
+            useMove = getIntent().getBooleanExtra("useMove", false);
+            useSms = getIntent().getBooleanExtra("useSms", false);
+        }
 
-        this.registerReceiver(mReceiver, intentFilter);
+        // Ecoute des sms reçus
+        if(useSms){
+            IntentFilter intentFilter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
+            mReceiver = new SMSReceiver();
+            this.registerReceiver(mReceiver, intentFilter);
+        }
     }
 
 
@@ -182,6 +198,8 @@ public class AlarmActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         //unregister our receiver
-        this.unregisterReceiver(this.mReceiver);
+        if(useSms) {
+            this.unregisterReceiver(this.mReceiver);
+        }
     }
 }

@@ -1,4 +1,5 @@
 <resources>
+    <color name="red">#f00000</color>
     <string name="app_name">Thief Catcher</string>
 
     <string name="hello_world">Hello world!</string>

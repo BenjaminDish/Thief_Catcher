@@ -45,6 +45,7 @@ public class EditTextDialogFragment extends DialogFragment {
         builder.setPositiveButton("Confirmer", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 if (text.getText().toString().equals(sharedPref.getString("pin", "1234"))) {
+                    Alarm.stop();
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
