@@ -1,5 +1,6 @@
 package com.example.benjamin.thief_catcher;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
@@ -17,7 +18,7 @@ import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Salut c'est dish
+
 
     ImageButton imageButtonLock;
     ToggleButton toggleButtonMove;
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     Boolean useMove = false;
     Boolean useCharge = false;
     Boolean useSms = false;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+
 
         toggleButtonMove = (ToggleButton) this.findViewById(R.id.toggleButtonMove);
         toggleButtonSms = (ToggleButton) this.findViewById(R.id.toggleButtonSms);

@@ -31,7 +31,7 @@
             android:name=".AlarmActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_alarm"
-            android:theme="@style/FullscreenTheme" >
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
         </activity>
     </application>
 

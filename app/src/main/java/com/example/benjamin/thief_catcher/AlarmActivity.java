@@ -1,18 +1,21 @@
 package com.example.benjamin.thief_catcher;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+
 
 import com.example.benjamin.thief_catcher.util.SystemUiHider;
 
@@ -22,10 +25,15 @@ import com.example.benjamin.thief_catcher.util.SystemUiHider;
  *
  * @see SystemUiHider
  */
-public class AlarmActivity extends Activity {
+public class AlarmActivity extends AppCompatActivity {
 
     private BroadcastReceiver mReceiver;
     ImageButton imageButtonUnlock;
+    private EditTextDialogFragment dial;
+    private FragmentManager fragmentManager;
+    private SharedPreferences sharedPref;
+    private Intent intent;
+
 
     /**
      * Whether or not the system UI should be auto-hidden after
@@ -57,9 +65,10 @@ public class AlarmActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_alarm);
@@ -97,6 +106,8 @@ public class AlarmActivity extends Activity {
                 }
             }
         });
+
+        fragmentManager = getFragmentManager();
 
         imageButtonUnlock = (ImageButton) this.findViewById(R.id.imageButtonUnlock);
         imageButtonUnlock.setImageResource(R.drawable.unlockicon);
@@ -145,9 +156,13 @@ public class AlarmActivity extends Activity {
     }
 
     private void D_UnLockClicked() {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+
+
+
+        dial = new EditTextDialogFragment();
+        dial.show(fragmentManager, "edit");
+
+
     }
 
     @Override
