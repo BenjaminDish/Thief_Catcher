@@ -28,7 +28,8 @@ import com.example.benjamin.thief_catcher.util.SystemUiHider;
  */
 public class AlarmActivity extends AppCompatActivity {
 
-    private BroadcastReceiver mReceiver;
+    private BroadcastReceiver smsReceiver;
+    private BroadcastReceiver chargeReceiver;
     private EditTextDialogFragment dial;
     private FragmentManager fragmentManager;
     private SharedPreferences sharedPref;
@@ -187,8 +188,15 @@ public class AlarmActivity extends AppCompatActivity {
         // Ecoute des sms reçus
         if(useSms){
             IntentFilter intentFilter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
-            mReceiver = new SMSReceiver();
-            this.registerReceiver(mReceiver, intentFilter);
+            smsReceiver = new SMSReceiver();
+            this.registerReceiver(smsReceiver, intentFilter);
+        }
+
+        // Ecoute de l'évènement "débranchement du téléphone"
+        if(useCharge){
+            IntentFilter intentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+            chargeReceiver = new PowerConnectionReceiver();
+            this.registerReceiver(chargeReceiver, intentFilter);
         }
     }
 
@@ -197,9 +205,13 @@ public class AlarmActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //unregister our receiver
+
+        //unregister our receivers
         if(useSms) {
-            this.unregisterReceiver(this.mReceiver);
+            this.unregisterReceiver(this.smsReceiver);
+        }
+        if(useCharge) {
+            this.unregisterReceiver(this.chargeReceiver);
         }
     }
 }
