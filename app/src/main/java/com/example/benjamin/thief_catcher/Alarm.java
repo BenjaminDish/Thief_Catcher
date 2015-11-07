@@ -1,7 +1,6 @@
 package com.example.benjamin.thief_catcher;
 
 import android.content.Context;
-import android.content.Intent;
 import android.media.MediaPlayer;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -16,16 +15,23 @@ public class Alarm {
     private static FrameLayout frameLayout;
     private static TextView textView;
     private static TimerTask task;
+    private static Boolean isActive = false;
 
     public static void start(Context context){
-        frameLayout.setBackgroundColor(0xfff00000);
-        mediaPlayer = MediaPlayer.create(context, R.raw.sun);
-        mediaPlayer.start(); // no need to call prepare(); create() does that for you
+        if(!isActive) {
+            frameLayout.setBackgroundColor(0xfff00000);
+            mediaPlayer = MediaPlayer.create(context, R.raw.sun);
+            mediaPlayer.start(); // no need to call prepare(); create() does that for you
+            isActive = true;
+        }
     }
 
     public static void stop(){
-        if (mediaPlayer != null){
-            mediaPlayer.release();
+        if(isActive) {
+            if (mediaPlayer != null) {
+                mediaPlayer.release();
+            }
+            isActive = false;
         }
     }
 

@@ -3,12 +3,18 @@ package com.example.benjamin.thief_catcher;
 import android.annotation.TargetApi;
 import android.app.FragmentManager;
 import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -26,18 +32,21 @@ import com.example.benjamin.thief_catcher.util.SystemUiHider;
  *
  * @see SystemUiHider
  */
-public class AlarmActivity extends AppCompatActivity {
+public class AlarmActivity extends AppCompatActivity implements SensorEventListener {
 
     private BroadcastReceiver smsReceiver;
     private BroadcastReceiver chargeReceiver;
+    private SensorManager mSensorManager;
+    private Sensor accelerometerSensor;
     private EditTextDialogFragment dial;
     private FragmentManager fragmentManager;
     private SharedPreferences sharedPref;
     private Intent intent;
     private ImageButton imageButtonUnlock;
-    Boolean useCharge;
-    Boolean useMove;
-    Boolean useSms;
+    private Boolean useCharge;
+    private Boolean useMove;
+    private Boolean useSms;
+    private double motionSensibility;
     private FrameLayout frameAlarm;
     private TextView message;
 
@@ -116,8 +125,6 @@ public class AlarmActivity extends AppCompatActivity {
             }
         });
 
-
-
         fragmentManager = getFragmentManager();
 
         imageButtonUnlock = (ImageButton) this.findViewById(R.id.imageButtonUnlock);
@@ -176,7 +183,11 @@ public class AlarmActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        Alarm.initiate(frameAlarm,message);
+        Alarm.initiate(frameAlarm, message);
+
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        Integer inte = sharedPref.getInt("slider_mouvement", 50);
+        motionSensibility = (float) (100 - inte) / 10.0;
 
         //Récupération des variales passées par la mainActivity
         if(getIntent().getExtras() != null){
@@ -198,9 +209,13 @@ public class AlarmActivity extends AppCompatActivity {
             chargeReceiver = new PowerConnectionReceiver();
             this.registerReceiver(chargeReceiver, intentFilter);
         }
+
+        if(useMove) {
+            mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+            accelerometerSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+            mSensorManager.registerListener(this, accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        }
     }
-
-
 
     @Override
     protected void onDestroy() {
@@ -212,6 +227,27 @@ public class AlarmActivity extends AppCompatActivity {
         }
         if(useCharge) {
             this.unregisterReceiver(this.chargeReceiver);
+        }
+        if(useMove) {
+            mSensorManager.unregisterListener(this);
+        }
+    }
+
+    @Override
+    public final void onAccuracyChanged(Sensor sensor, int accuracy) {
+        // Do something here if sensor accuracy changes.
+    }
+
+    @Override
+    public final void onSensorChanged(SensorEvent event) {
+        // The light sensor returns a single value.
+        // Many sensors return 3 values, one for each axis.
+        float accX = event.values[0];
+        float accY = event.values[1];
+        if(Math.abs(accX)> motionSensibility + 1 || Math.abs(accY)> motionSensibility + 1){
+            System.out.println("aX : " + accX + ", aY : " + accY + "\n");
+            Alarm.start(this);
+            mSensorManager.unregisterListener(this);
         }
     }
 }

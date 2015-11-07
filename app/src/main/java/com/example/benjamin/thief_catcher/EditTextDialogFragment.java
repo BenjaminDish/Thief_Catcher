@@ -8,14 +8,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
-import android.text.Layout;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 public class EditTextDialogFragment extends DialogFragment {
     private EditText text;
@@ -45,9 +40,9 @@ public class EditTextDialogFragment extends DialogFragment {
         builder.setPositiveButton("Confirmer", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 if (text.getText().toString().equals(sharedPref.getString("pin", "1234"))) {
-                    Alarm.stop();
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
+                    Alarm.stop();
                 }
             }
         });
