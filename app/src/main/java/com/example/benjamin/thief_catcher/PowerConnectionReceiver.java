@@ -17,7 +17,11 @@ public class PowerConnectionReceiver extends BroadcastReceiver{
             boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
                     status == BatteryManager.BATTERY_STATUS_FULL;
             if (! isCharging) {
-                Alarm.start(context);
+                try {
+                    Alarm.start(context);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

@@ -38,7 +38,11 @@ public class SMSReceiver extends BroadcastReceiver
                     final String messageBody = messages[0].getMessageBody();
 
                     if(messageBody.equals(smsMess)){
-                        Alarm.start(context);
+                        try {
+                            Alarm.start(context);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }

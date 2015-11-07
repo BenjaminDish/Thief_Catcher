@@ -183,9 +183,10 @@ public class AlarmActivity extends AppCompatActivity implements SensorEventListe
     protected void onStart() {
         super.onStart();
 
-        Alarm.initiate(frameAlarm, message);
-
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+        Alarm.initiate(frameAlarm, message, sharedPref);
+
         Integer inte = sharedPref.getInt("slider_mouvement", 50);
         motionSensibility = (float) (100 - inte) / 10.0;
 
@@ -246,7 +247,11 @@ public class AlarmActivity extends AppCompatActivity implements SensorEventListe
         float accY = event.values[1];
         if(Math.abs(accX)> motionSensibility + 1 || Math.abs(accY)> motionSensibility + 1){
             System.out.println("aX : " + accX + ", aY : " + accY + "\n");
-            Alarm.start(this);
+            try {
+                Alarm.start(this);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             mSensorManager.unregisterListener(this);
         }
     }
