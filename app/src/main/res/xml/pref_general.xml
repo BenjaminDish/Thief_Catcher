@@ -64,6 +64,7 @@
         android:title="@string/pref_texte_alarme_title"
         android:summary="@string/pref_texte_alarme_summary" />
 
+    <!-- Choix du code pin -->
     <EditTextPreference
         android:key="pin"
         android:title="@string/pref_PIN_title"

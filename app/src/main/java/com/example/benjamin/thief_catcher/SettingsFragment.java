@@ -52,6 +52,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         String delai2 = sharedPref.getString("slider_déclenchement" , "0");
         delaiDeclenchement.setSummary(this.getString(R.string.pref_slider_déclenchement_summary).replace("$1", "" + delai2));
 
+
     }
 
 
@@ -70,7 +71,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         }
 
         if(key.equals("slider_activation")) {
-            String delai1 = sharedPref.getString("slider_activation", "0");
+            String delai1 = sharedPref.getString("slider_activation", "5");
             delaiActivation.setSummary(this.getString(R.string.pref_slider_activation_summary ).replace("$1", "" + delai1));
         }
 

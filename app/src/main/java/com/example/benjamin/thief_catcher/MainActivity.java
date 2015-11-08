@@ -1,19 +1,25 @@
 package com.example.benjamin.thief_catcher;
 
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.BatteryManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ImageSpan;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     public Boolean useMove = false;
     public Boolean useCharge = false;
     public Boolean useSms = false;
+    private Toast toast;
+    private SharedPreferences sharedPref;
 
 
 
@@ -129,37 +137,74 @@ public class MainActivity extends AppCompatActivity {
     private void D_MoveChanged(Boolean isChecked){
         useMove = isChecked;
     }
+
     private void D_ChargeChanged(Boolean isChecked){
-        useCharge = isChecked;
+        IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        Intent batteryStatus = registerReceiver(null, filter);
+
+        int chargeState = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+
+        switch (chargeState) {
+            case BatteryManager.BATTERY_STATUS_CHARGING:
+            case BatteryManager.BATTERY_STATUS_FULL:
+                useCharge = isChecked;
+                // Le téléphone est branché
+
+                break;
+            default:
+                toggleButtonCharge.setChecked(false);
+
+                Context context = getApplicationContext();
+                int duration = Toast.LENGTH_SHORT;
+
+                toast = Toast.makeText(context, "Branchez le téléphone pour pouvoir choisir ce mode de déclenchement.", duration);
+                toast.show();
+        }
+
+
     }
     private void D_SmsChanged(Boolean isChecked){
-        useSms = isChecked;
+        if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
+            useSms = isChecked;
+        } else {
+            toggleButtonSms.setChecked(false);
+
+            Context context = getApplicationContext();
+            int duration = Toast.LENGTH_SHORT;
+
+            toast = Toast.makeText(context, "Votre appareil ne peut pas recevoir de SMS.", duration);
+            toast.show();
+        }
+
     }
     private void D_LockClicked(){
         Intent activationIntent = new Intent(this, ActivationActivity.class);
         activationIntent.putExtra("useCharge", useCharge);
         activationIntent.putExtra("useMove", useMove);
         activationIntent.putExtra("useSms", useSms);
-        if (useCharge) {
-            IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-            Intent batteryStatus = registerReceiver(null, filter);
 
-            int chargeState = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+        //On regarde si au moins un mode de déclenchement est séléctionné
+        if (useCharge || useMove || useSms){
 
-            switch (chargeState) {
-                case BatteryManager.BATTERY_STATUS_CHARGING:
-                case BatteryManager.BATTERY_STATUS_FULL:
-                    // Le téléphone est branché
-                    startActivity(activationIntent);
-                    break;
-                default:
-                    //Le téléphone n'est pas branché
-                    //TODO Balancer une pop up pour dire de désactiver l'option chargeur ou mettre le téléphone à charger
+            //On regarde si l'utilisateur à choisit un code de désactivation
+            sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+            if(!sharedPref.getString("pin", ("-1")).equals("-1")) {
+                        startActivity(activationIntent);
+            }
+            else{
+                Context context = getApplicationContext();
+                int duration = Toast.LENGTH_SHORT;
+
+                toast = Toast.makeText(context, "Vous devez choisir un code de désactivation.", duration);
+                toast.show();
             }
         }
-        else
-        {
-            startActivity(activationIntent);
+        else{
+            Context context = getApplicationContext();
+            int duration = Toast.LENGTH_SHORT;
+
+            toast = Toast.makeText(context, "Choisissez un mode de déclenchement.", duration);
+            toast.show();
         }
     }
 

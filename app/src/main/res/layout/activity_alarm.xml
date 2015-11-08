@@ -12,9 +12,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView android:id="@+id/fullscreen_content" android:layout_width="fill_parent"
-            android:layout_height="fill_parent" android:keepScreenOn="true"
-            android:textStyle="bold" android:textSize="20dp" android:gravity="center"
+        <TextView android:id="@+id/fullscreen_content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:keepScreenOn="true"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:text="Default"
+            android:layout_weight="1" />
+
+        <TextView android:id="@+id/text2"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:keepScreenOn="true"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:gravity="center"
             android:text="L&apos;alarme est activée\n Appuyez pour delocker"
             android:layout_weight="1" />
 

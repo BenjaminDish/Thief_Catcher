@@ -107,7 +107,7 @@
     <string name="pref_texte_alarme_summary">Valeur courante : $1</string>
 
     <!-- string pour le choix du code PIN -->
-    <string name="pref_PIN_title">Choix du code PIN pour dévérouiller l\'alarme</string>
+    <string name="pref_PIN_title">Choix du code pour dévérouiller l\'alarme</string>
     <string name="pref_PIN_summary">Valeur courante : </string>
     <string name="pref_PIN_dialog_message">4 caractère max</string>
 

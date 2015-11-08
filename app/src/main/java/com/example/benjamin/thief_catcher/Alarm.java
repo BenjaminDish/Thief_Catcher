@@ -3,6 +3,7 @@ package com.example.benjamin.thief_catcher;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.preference.PreferenceManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -18,10 +19,16 @@ public class Alarm {
     private static Integer alarmDelay;
 
     public static void start(Context context) throws InterruptedException {
+
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+
         if(!isActive) {
-            Thread.sleep(alarmDelay*1000);
+            textView.setText(sharedPref.getString("text_alarm", "Ce portable a été volé"));
+            Thread.sleep(alarmDelay * 1000);
             frameLayout.setBackgroundColor(0xfff00000);
-            mediaPlayer = MediaPlayer.create(context, R.raw.sun);
+
+            mediaPlayer = MediaPlayer.create(context, R.raw.alarme);
+            mediaPlayer.setLooping(true);
             mediaPlayer.start();
             isActive = true;
         }
