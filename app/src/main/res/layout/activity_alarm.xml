@@ -1,6 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="#bababa"
+    android:layout_height="match_parent" android:background="@color/blue_menu"
     tools:context="com.example.benjamin.thief_catcher.AlarmActivity"
     android:id="@+id/frameAlarm">
 
@@ -19,34 +19,41 @@
             android:textStyle="bold"
             android:textSize="20dp"
             android:gravity="center"
-            android:layout_weight="1" />
+            android:layout_weight="0.5"
+            android:allowUndo="false" />
 
         <TextView android:id="@+id/text2"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:keepScreenOn="true"
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:gravity="center"
+            android:gravity="bottom|center_horizontal"
             android:text="L&apos;alarme est activée\n Appuyez pour delocker"
-            android:layout_weight="1" />
+            android:layout_weight="0.8"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/gris_texte" />
 
         <ImageButton
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:id="@+id/imageButtonUnlock"
-            android:layout_weight="1"
-            android:layout_gravity="center_horizontal" />
+            android:layout_weight="0.6"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/blue_menu"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp" />
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="LOCKED"
+            android:text="Alarme Activée"
             android:id="@+id/textViewUnlock"
-            android:layout_weight="1"
+            android:layout_weight="0.8"
             android:textSize="20dp"
-            android:gravity="center_vertical|center_horizontal" />
+            android:gravity="center_vertical|center_horizontal"
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <!-- This FrameLayout insets its children based on system windows using
