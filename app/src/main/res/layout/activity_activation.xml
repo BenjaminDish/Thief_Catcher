@@ -1,6 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="#8ccc91"
+    android:layout_height="match_parent" android:background="@color/blue_menu"
     tools:context="com.example.benjamin.thiefcatcher.ActivationActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
@@ -19,39 +19,34 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:keepScreenOn="true"
-            android:textColor="#010203"
-            android:textStyle="bold"
-            android:textSize="40sp"
-            android:gravity="bottom|center"
             android:text="Activation de l&apos;alarme\n dans"
             android:layout_weight="0.3"
-            />
+            android:textAppearance="@android:style/TextAppearance.Large"
+            android:textSize="30dp"
+            android:gravity="center"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/textViewCompteur"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:keepScreenOn="true"
-            android:textColor="#010203"
-            android:textStyle="bold"
-            android:textSize="50sp"
-            android:gravity="center_vertical|center_horizontal"
-            android:text="10"
             android:layout_weight="0.3"
-             />
+            android:textAppearance="@android:style/TextAppearance.Large"
+            android:textSize="50dp"
+            android:gravity="top|center_horizontal"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/messageMove"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:keepScreenOn="true"
-            android:textColor="#010203"
-            android:textStyle="bold"
             android:textSize="30sp"
-            android:gravity="top|center_vertical|center_horizontal"
-            android:text=""
             android:layout_weight="0.4"
-             />
+            android:textAppearance="@android:style/TextAppearance.Large"
+            android:gravity="center"
+            android:textColor="@color/black" />
 
     </LinearLayout>
 
