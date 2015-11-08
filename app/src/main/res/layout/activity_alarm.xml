@@ -19,7 +19,6 @@
             android:textStyle="bold"
             android:textSize="20dp"
             android:gravity="center"
-            android:text="Default"
             android:layout_weight="1" />
 
         <TextView android:id="@+id/text2"
@@ -43,7 +42,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="UNLOCK"
+            android:text="LOCKED"
             android:id="@+id/textViewUnlock"
             android:layout_weight="1"
             android:textSize="20dp"
