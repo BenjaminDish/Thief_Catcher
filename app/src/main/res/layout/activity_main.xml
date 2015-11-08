@@ -43,7 +43,8 @@
             android:textOff=" "
             android:textOn=" "
             android:singleLine="false"
-            android:padding="10dp" />
+            android:padding="10dp"
+        />
 
         <ToggleButton
             android:layout_width="wrap_content"

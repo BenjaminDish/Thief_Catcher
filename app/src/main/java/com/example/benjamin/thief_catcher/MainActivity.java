@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         toggleButtonMove = (ToggleButton) this.findViewById(R.id.toggleButtonMove);
-        toggleButtonSms = (ToggleButton) this.findViewById(R.id.toggleButtonSms);
+       toggleButtonSms = (ToggleButton) this.findViewById(R.id.toggleButtonSms);
         toggleButtonCharge = (ToggleButton) this.findViewById(R.id.toggleButtonCharge);
         imageButtonLock = (ImageButton) this.findViewById(R.id.imageButtonLock);
 
