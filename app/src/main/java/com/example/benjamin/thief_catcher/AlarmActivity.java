@@ -11,6 +11,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -49,6 +50,7 @@ public class AlarmActivity extends AppCompatActivity implements SensorEventListe
     private double motionSensibility;
     private FrameLayout frameAlarm;
     private TextView message;
+    private AudioManager am;
 
     /**
      * Whether or not the system UI should be auto-hidden after
@@ -154,6 +156,10 @@ public class AlarmActivity extends AppCompatActivity implements SensorEventListe
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             return true;
         }
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN || keyCode == KeyEvent.KEYCODE_VOLUME_UP) && Alarm.getStatus()) {
+            am.setStreamVolume(AudioManager.STREAM_MUSIC, am.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+            return true;
+        }
         return super.onKeyDown(keyCode, event);
     }
 
@@ -185,11 +191,12 @@ public class AlarmActivity extends AppCompatActivity implements SensorEventListe
         super.onStart();
 
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        am = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
 
         Alarm.initiate(frameAlarm, message, sharedPref);
 
-        Integer inte = sharedPref.getInt("slider_mouvement", 50);
-        motionSensibility = (float) (100 - inte) / 10.0;
+        Integer valeur = sharedPref.getInt("slider_mouvement", 50);
+        motionSensibility = (float) (100 - valeur) / 10.0;
 
         //Récupération des variales passées par la mainActivity
         if(getIntent().getExtras() != null){

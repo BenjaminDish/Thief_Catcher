@@ -49,4 +49,8 @@ public class Alarm {
         alarmDelay = Integer.parseInt(sharedPref.getString("slider_déclenchement", "0"));
     }
 
+    public static boolean getStatus(){
+        return isActive;
+    }
+
 }
