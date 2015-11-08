@@ -5,7 +5,7 @@
     <ListPreference
         android:key="theme_sonore"
         android:title="@string/pref_theme_sonore_title"
-        android:defaultValue="1"
+        android:defaultValue="usa"
         android:entries="@array/pref_theme_sonore_entries"
         android:entryValues="@array/pref_theme_sonore_entries_values"
         android:summary="@string/pref_theme_sonore_summary"

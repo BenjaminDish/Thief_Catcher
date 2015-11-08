@@ -7,14 +7,14 @@
     <string name="pref_theme_sonore_title">Thème sonore</string>
     <string name="pref_theme_sonore_summary">Choix du son de l\'alarme</string>
     <string-array name="pref_theme_sonore_entries">
-        <item>Thème 1</item>
-        <item>Thème 2</item>
-        <item>Thème 3</item>
+        <item>Sirène 1</item>
+        <item>Sirène 2</item>
+        <item>Petit Poney</item>
     </string-array>
     <string-array name="pref_theme_sonore_entries_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
+        <item>usa</item>
+        <item>fr</item>
+        <item>poney</item>
     </string-array>
 
 

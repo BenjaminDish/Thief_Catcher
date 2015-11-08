@@ -2,8 +2,11 @@ package com.example.benjamin.thief_catcher;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.TextView;
 
 import java.util.Timer;
@@ -13,7 +16,7 @@ public class Alarm {
     private static MediaPlayer mediaPlayer;
     private static TextView textView;
     private static TimerTask taskClignotement;
-    private static Timer chronoClign = new Timer();
+    private static Timer chronoClign;
     private static Boolean isActive = false;
     private static SharedPreferences sharedPref;
     private static Integer alarmDelay;
@@ -30,10 +33,14 @@ public class Alarm {
             textView.setText(sharedPref.getString("text_alarm", "Ce portable a été volé"));
 
             // Lancement du clignotement bleu/rouge
+            chronoClign = new Timer();
             chronoClign.schedule(taskClignotement, (long) 0.0, (long) 200.0);
 
             // Lancement de la musique
-            mediaPlayer = MediaPlayer.create(context, R.raw.alarme);
+
+            String nomMusic = sharedPref.getString("theme_sonore", "usa");
+            int identif = context.getResources().getIdentifier(nomMusic, "raw", context.getPackageName());
+            mediaPlayer = MediaPlayer.create(context, identif );
             mediaPlayer.setLooping(true);
             mediaPlayer.start();
 
