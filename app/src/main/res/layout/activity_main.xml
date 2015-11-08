@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e8e8e8">
+    android:background="@color/blue_menu">
 
     <TextView
         android:layout_width="fill_parent"
@@ -15,7 +15,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.72"
         android:gravity="bottom|center_horizontal"
-        android:textColor="#5450ad" />
+        android:textColor="@color/blue_text" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -80,12 +80,12 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Click To Lock"
+        android:text="Click pour Activer"
         android:id="@+id/textViewInfoUnlock"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.75"
         android:gravity="bottom|center_horizontal"
-        android:textColor="#b1b1b1" />
+        android:textColor="@color/gris_texte" />
 
     <ImageButton
         android:layout_width="fill_parent"
@@ -97,14 +97,14 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
-        android:background="#e8e8e8"
+        android:background="@color/blue_menu"
         android:clickable="true" />
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="UNLOCKED"
+        android:text="Alarme Désactivée"
         android:id="@+id/textViewLocked"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.7"

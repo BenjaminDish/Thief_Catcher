@@ -2,5 +2,9 @@
 
     <color name="black_overlay">#66000000</color>
     <color name="blue">#0b0aff</color>
+    <color name="blue_menu">#c5c7e8</color>
+    <color name="blue_text">#5849ad</color>
     <color name="red">#ff0c0e</color>
+    <color name="gris_texte">#a4a4a4</color>
+
 </resources>
