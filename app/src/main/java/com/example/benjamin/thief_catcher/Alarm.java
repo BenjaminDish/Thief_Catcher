@@ -14,10 +14,9 @@ public class Alarm {
     private static TextView textView;
     private static TimerTask task;
     private static Boolean isActive = false;
-    private static SharedPreferences sharedPref;
     private static Integer alarmDelay;
 
-    public static void start(Context context) throws InterruptedException {
+    public static void start(Context context) throws InterruptedException{
         if(!isActive) {
             Thread.sleep(alarmDelay*1000);
             frameLayout.setBackgroundColor(0xfff00000);
@@ -40,6 +39,10 @@ public class Alarm {
         frameLayout = frame;
         textView = text;
         alarmDelay = Integer.parseInt(sharedPref.getString("slider_déclenchement", "0"));
+    }
+
+    public static boolean getStatus(){
+        return isActive;
     }
 
 }
