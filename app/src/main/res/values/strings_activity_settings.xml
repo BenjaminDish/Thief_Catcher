@@ -74,7 +74,7 @@
         <item>10 Secondes</item>
     </string-array>
     <string-array name="pref_slider_déclenchement_entries_values">
-        <item>Seconde</item>
+        <item>0</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>

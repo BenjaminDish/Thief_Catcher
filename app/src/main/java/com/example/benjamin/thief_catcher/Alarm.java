@@ -8,9 +8,6 @@ import android.widget.TextView;
 
 import java.util.TimerTask;
 
-/**
- * Created by Benjamin on 05/11/2015.
- */
 public class Alarm {
     private static MediaPlayer mediaPlayer;
     private static FrameLayout frameLayout;
