@@ -16,6 +16,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -26,6 +27,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.benjamin.thief_catcher.util.SystemUiHider;
+
+import java.util.TimerTask;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -51,6 +54,7 @@ public class AlarmActivity extends AppCompatActivity implements SensorEventListe
     private FrameLayout frameAlarm;
     private TextView message;
     private AudioManager am;
+    private Integer couleur_fond;
 
     /**
      * Whether or not the system UI should be auto-hidden after
@@ -193,7 +197,30 @@ public class AlarmActivity extends AppCompatActivity implements SensorEventListe
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         am = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
 
-        Alarm.initiate(frameAlarm, message, sharedPref);
+
+        // Gère le clignotement rouge/bleu
+        couleur_fond = ContextCompat.getColor(this, R.color.blue);
+        TimerTask taskClignotement = new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (couleur_fond.equals(ContextCompat.getColor(AlarmActivity.this, R.color.blue))) {
+                            frameAlarm.setBackgroundColor(ContextCompat.getColor(AlarmActivity.this, R.color.red));
+                            couleur_fond = ContextCompat.getColor(AlarmActivity.this, R.color.red);
+                        }
+                        else
+                        {
+                            frameAlarm.setBackgroundColor(ContextCompat.getColor(AlarmActivity.this, R.color.blue));
+                            couleur_fond = ContextCompat.getColor(AlarmActivity.this, R.color.blue);
+                        }
+                    }
+                });
+            }
+        };
+
+        Alarm.initiate(taskClignotement, message, sharedPref);
 
         Integer valeur = sharedPref.getInt("slider_mouvement", 50);
         motionSensibility = (float) (100 - valeur) / 10.0;
