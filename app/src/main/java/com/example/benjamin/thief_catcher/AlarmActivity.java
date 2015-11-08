@@ -96,6 +96,7 @@ public class AlarmActivity extends AppCompatActivity implements SensorEventListe
 
         final View contentView = findViewById(R.id.fullscreen_content);
 
+
         // Set up an instance of SystemUiHider to control the system UI for
         // this activity.
         mSystemUiHider = SystemUiHider.getInstance(this, contentView, HIDER_FLAGS);

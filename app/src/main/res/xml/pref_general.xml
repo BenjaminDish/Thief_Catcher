@@ -39,7 +39,7 @@
     <com.example.benjamin.thief_catcher.SeekBarListPreference
         android:key="slider_déclenchement"
         android:title="@string/pref_slider_déclenchement_title"
-        android:defaultValue="0"
+        android:defaultValue="5"
         android:dialogMessage="@string/pref_slider_déclenchement_dialog_message"
         android:entries="@array/pref_slider_déclenchement_entries"
         android:entryValues="@array/pref_slider_déclenchement_entries_values"
@@ -61,6 +61,7 @@
     <!-- Choix du message à afficher -->
     <EditTextPreference
         android:key="text_alarme"
+        android:defaultValue="Ce portable a été volé."
         android:title="@string/pref_texte_alarme_title"
         android:summary="@string/pref_texte_alarme_summary" />
 
@@ -68,7 +69,7 @@
     <EditTextPreference
         android:key="pin"
         android:title="@string/pref_PIN_title"
-        android:summary="@string/pref_PIN_summary"
+        android:defaultValue=""
         android:dialogMessage="@string/pref_PIN_dialog_message"
         android:inputType="numberPassword"
         android:maxLength="4"

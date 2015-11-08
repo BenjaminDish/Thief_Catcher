@@ -35,6 +35,7 @@ public class ActivationActivity extends Activity {
     Boolean useCharge;
     Boolean useMove;
     Boolean useSms;
+    private TextView messageMove;
 
     /**
      * Whether or not the system UI should be auto-hidden after
@@ -116,6 +117,11 @@ public class ActivationActivity extends Activity {
             useCharge = getIntent().getBooleanExtra("useCharge", false);
             useMove = getIntent().getBooleanExtra("useMove", false);
             useSms = getIntent().getBooleanExtra("useSms", false);
+        }
+
+        messageMove = (TextView) this.findViewById(R.id.messageMove);
+        if(useMove){
+            messageMove.setText("Posez votre appareil");
         }
 
         textViewCompteur = (TextView) this.findViewById(R.id.textViewCompteur);

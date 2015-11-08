@@ -35,7 +35,7 @@ public class EditTextDialogFragment extends DialogFragment {
         text  = (EditText) layout.findViewById(R.id.edit);
 
 
-        builder.setMessage("Entrez votre code PIN");
+        builder.setMessage("Entrez votre code");
 
         builder.setPositiveButton("Confirmer", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
