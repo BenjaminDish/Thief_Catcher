@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- When selected, use grey -->
+    // Etat du bouton si checked
     <item android:drawable="@drawable/moveicongreen"
         android:state_checked="true" />
-    <!-- When not selected, use white-->
+    // Etat du bouton sinon
     <item android:drawable="@drawable/moveiconred"
         android:state_checked="false"/>
-
 </selector>

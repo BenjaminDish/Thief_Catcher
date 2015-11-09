@@ -1,11 +1,11 @@
 <resources>
-
     <color name="black_overlay">#66000000</color>
     <color name="black">#000000</color>
     <color name="blue">#0b0aff</color>
-    <color name="blue_menu">#c5c7e8</color>
-    <color name="blue_text">#5849ad</color>
+    <color name="fond_app">#D7E7BD</color>
+    <color name="text_app">#201004</color>
     <color name="red">#ff0c0e</color>
     <color name="gris_texte">#a4a4a4</color>
-
+    <color name="green_button">#B1DD97</color>
+    <color name="red_button">#D41E02</color>
 </resources>

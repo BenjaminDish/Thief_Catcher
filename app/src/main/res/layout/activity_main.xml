@@ -4,79 +4,125 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_menu">
+    android:background="@color/fond_app">
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Modes de déclenchement"
+        android:text="Modes de déclenchement\n"
         android:id="@+id/textViewModeSelection"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.72"
         android:gravity="bottom|center_horizontal"
-        android:textColor="@color/blue_text" />
+        android:textColor="@color/text_app"
+        android:background="@color/fond_app" />
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.6"
         android:gravity="center"
-        android:layout_margin="1dp">
+        android:background="@color/text_app"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
 
-        <ToggleButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/toggleButtonMove"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:checked="false"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="15dp"
-            android:clickable="true"
-            android:elegantTextHeight="false"
-            android:enabled="true"
-            android:focusable="false"
-            android:textOff=" "
-            android:textOn=" "
-            android:singleLine="false"
-            android:padding="10dp"
-            android:background="@drawable/check_move"
-        />
+            android:layout_marginRight="15dp">
 
-        <ToggleButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/toggleButtonCharge"
-            android:layout_weight="1"
-            android:layout_margin="15dp"
-            android:textOff=" "
-            android:textOn=" "
-            android:text=" "
-            android:enabled="true"
-            android:clickable="true"
-            android:padding="10dp"
-            android:background="@drawable/check_charge"/>
+            <ImageButton
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/imageButtonMove"
+                android:layout_weight="1"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
+                android:src="@drawable/ic_screen_rotation_black"
+                android:background="@color/red_button" />
 
-        <ToggleButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" "
-            android:id="@+id/toggleButtonSms"
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Mouvement"
+                android:id="@+id/textView3"
+                android:layout_weight="3"
+                android:gravity="top|center_horizontal"
+                android:textColor="@color/fond_app"
+                android:textSize="25dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:textOn=" "
-            android:textOff=" "
-            android:enabled="true"
-            android:clickable="true"
-            android:padding="10dp"
-            android:background="@drawable/check_sms"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="15dp"/>
+            android:layout_marginRight="15dp">
+
+            <ImageButton
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/imageButtonCharge"
+                android:layout_weight="1"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
+                android:src="@drawable/ic_power_black"
+                android:background="@color/red_button" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Chargeur"
+                android:id="@+id/textView2"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="3"
+                android:gravity="top|center_horizontal"
+                android:textColor="@color/fond_app"
+                android:textSize="25dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="30dp">
+
+            <ImageButton
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/imageButtonSms"
+                android:layout_weight="1"
+                android:layout_marginBottom="15dp"
+                android:clickable="true"
+                android:src="@drawable/ic_message_black"
+                android:layout_marginTop="20dp"
+                android:adjustViewBounds="false"
+                android:background="@color/red_button" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Message"
+                android:id="@+id/textView"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="3"
+                android:gravity="top|center_horizontal"
+                android:textColor="@color/fond_app"
+                android:textSize="25dp" />
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -89,7 +135,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.75"
         android:gravity="bottom|center_horizontal"
-        android:textColor="@color/gris_texte" />
+        android:textColor="@color/text_app" />
 
     <ImageButton
         android:layout_width="fill_parent"
@@ -101,8 +147,9 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
-        android:background="@color/blue_menu"
-        android:clickable="true" />
+        android:background="@color/fond_app"
+        android:clickable="true"
+        android:src="@drawable/unlockicon" />
 
     <TextView
         android:layout_width="fill_parent"
@@ -113,6 +160,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.7"
         android:gravity="top|center_horizontal"
-        android:textColor="@color/black" />
+        android:textColor="@color/text_app" />
 </LinearLayout>
 

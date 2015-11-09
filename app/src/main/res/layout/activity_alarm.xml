@@ -1,6 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="@color/blue_menu"
+    android:layout_height="match_parent" android:background="@color/fond_app"
     tools:context="com.example.benjamin.thief_catcher.AlarmActivity"
     android:id="@+id/frameAlarm">
 
@@ -27,10 +27,10 @@
             android:layout_height="fill_parent"
             android:keepScreenOn="true"
             android:gravity="bottom|center_horizontal"
-            android:text="L&apos;alarme est activée\n Appuyez pour delocker"
+            android:text="\nAppuyez pour delocker"
             android:layout_weight="0.8"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/gris_texte" />
+            android:textColor="@color/text_app" />
 
         <ImageButton
             android:layout_width="fill_parent"
@@ -38,7 +38,7 @@
             android:id="@+id/imageButtonUnlock"
             android:layout_weight="0.6"
             android:layout_gravity="center_horizontal"
-            android:background="@color/blue_menu"
+            android:background="@color/fond_app"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"
             android:layout_marginRight="20dp"
@@ -53,7 +53,7 @@
             android:layout_weight="0.8"
             android:textSize="20dp"
             android:gravity="center_vertical|center_horizontal"
-            android:textColor="@color/black" />
+            android:textColor="@color/text_app" />
     </LinearLayout>
 
     <!-- This FrameLayout insets its children based on system windows using

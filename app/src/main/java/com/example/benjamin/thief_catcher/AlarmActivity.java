@@ -46,12 +46,12 @@ public class AlarmActivity extends AppCompatActivity implements SensorEventListe
     private FragmentManager fragmentManager;
     private SharedPreferences sharedPref;
     private Intent intent;
-    private ImageButton imageButtonUnlock;
     private Boolean useCharge;
     private Boolean useMove;
     private Boolean useSms;
     private double motionSensibility;
     private FrameLayout frameAlarm;
+    private ImageButton imageButtonUnlock;
     private TextView message;
     private AudioManager am;
     private Integer couleur_fond;
@@ -96,6 +96,7 @@ public class AlarmActivity extends AppCompatActivity implements SensorEventListe
         setContentView(R.layout.activity_alarm);
 
         frameAlarm = (FrameLayout) findViewById(R.id.frameAlarm);
+        imageButtonUnlock = (ImageButton) findViewById(R.id.imageButtonUnlock);
         message = (TextView) findViewById(R.id.fullscreen_content);
 
         final View contentView = findViewById(R.id.fullscreen_content);
@@ -209,11 +210,13 @@ public class AlarmActivity extends AppCompatActivity implements SensorEventListe
                     public void run() {
                         if (couleur_fond.equals(ContextCompat.getColor(AlarmActivity.this, R.color.blue))) {
                             frameAlarm.setBackgroundColor(ContextCompat.getColor(AlarmActivity.this, R.color.red));
+                            imageButtonUnlock.setBackgroundColor(ContextCompat.getColor(AlarmActivity.this, R.color.red));
                             couleur_fond = ContextCompat.getColor(AlarmActivity.this, R.color.red);
                         }
                         else
                         {
                             frameAlarm.setBackgroundColor(ContextCompat.getColor(AlarmActivity.this, R.color.blue));
+                            imageButtonUnlock.setBackgroundColor(ContextCompat.getColor(AlarmActivity.this, R.color.blue));
                             couleur_fond = ContextCompat.getColor(AlarmActivity.this, R.color.blue);
                         }
                     }

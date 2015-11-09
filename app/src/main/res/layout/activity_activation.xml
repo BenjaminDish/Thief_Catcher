@@ -1,6 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="@color/blue_menu"
+    android:layout_height="match_parent" android:background="@color/fond_app"
     tools:context="com.example.benjamin.thiefcatcher.ActivationActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
@@ -24,7 +24,7 @@
             android:textAppearance="@android:style/TextAppearance.Large"
             android:textSize="30dp"
             android:gravity="center"
-            android:textColor="@color/black" />
+            android:textColor="@color/text_app" />
 
         <TextView
             android:id="@+id/textViewCompteur"
@@ -35,7 +35,7 @@
             android:textAppearance="@android:style/TextAppearance.Large"
             android:textSize="50dp"
             android:gravity="top|center_horizontal"
-            android:textColor="@color/black" />
+            android:textColor="@color/text_app" />
 
         <TextView
             android:id="@+id/messageMove"
@@ -46,7 +46,7 @@
             android:layout_weight="0.4"
             android:textAppearance="@android:style/TextAppearance.Large"
             android:gravity="center"
-            android:textColor="@color/black" />
+            android:textColor="@color/text_app" />
 
     </LinearLayout>
 
