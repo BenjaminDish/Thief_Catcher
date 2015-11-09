@@ -59,35 +59,10 @@ public class MainActivity extends AppCompatActivity {
 
         imageButtonLock.setImageResource(R.drawable.unlockicon);
 
-        ImageSpan imageSpanMoveRed = new ImageSpan(this, R.drawable.moveiconred);
-        ImageSpan imageSpanMoveGreen = new ImageSpan(this, R.drawable.moveicongreen);
-        SpannableString contentMoveRed = new SpannableString("X");
-        SpannableString contentMoveGreen = new SpannableString("X");
-        contentMoveRed.setSpan(imageSpanMoveRed, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        contentMoveGreen.setSpan(imageSpanMoveGreen, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        toggleButtonMove.setText(contentMoveRed);
-        toggleButtonMove.setTextOn(contentMoveGreen);
-        toggleButtonMove.setTextOff(contentMoveRed);
 
-        ImageSpan imageSpanSmsRed = new ImageSpan(this, R.drawable.smsiconred);
-        ImageSpan imageSpanSmsGreen = new ImageSpan(this, R.drawable.smsicongreen);
-        SpannableString contentSmsRed = new SpannableString("X");
-        SpannableString contentSmsGreen = new SpannableString("X");
-        contentSmsRed.setSpan(imageSpanSmsRed, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        contentSmsGreen.setSpan(imageSpanSmsGreen, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        toggleButtonSms.setText(contentSmsRed);
-        toggleButtonSms.setTextOn(contentSmsGreen);
-        toggleButtonSms.setTextOff(contentSmsRed);
 
-        ImageSpan imageSpanChargeRed = new ImageSpan(this, R.drawable.chargeiconred);
-        ImageSpan imageSpanChargeGreen = new ImageSpan(this, R.drawable.chargeicongreen);
-        SpannableString contentChargeRed = new SpannableString("X");
-        SpannableString contentChargeGreen = new SpannableString("X");
-        contentChargeRed.setSpan(imageSpanChargeRed, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        contentChargeGreen.setSpan(imageSpanChargeGreen, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        toggleButtonCharge.setText(contentChargeRed);
-        toggleButtonCharge.setTextOn(contentChargeGreen);
-        toggleButtonCharge.setTextOff(contentChargeRed);
+
+
 
         toggleButtonMove.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

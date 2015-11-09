@@ -44,6 +44,7 @@
             android:textOn=" "
             android:singleLine="false"
             android:padding="10dp"
+            android:background="@drawable/check_move"
         />
 
         <ToggleButton
@@ -57,7 +58,8 @@
             android:text=" "
             android:enabled="true"
             android:clickable="true"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:background="@drawable/check_charge"/>
 
         <ToggleButton
             android:layout_width="wrap_content"
@@ -65,15 +67,16 @@
             android:text=" "
             android:id="@+id/toggleButtonSms"
             android:layout_weight="1"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="15dp"
             android:textOn=" "
             android:textOff=" "
             android:enabled="true"
             android:clickable="true"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:background="@drawable/check_sms"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="15dp"/>
 
     </LinearLayout>
 
