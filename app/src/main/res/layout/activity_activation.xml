@@ -15,7 +15,7 @@
 
 
         <TextView
-            android:id="@+id/fullscreen_content"
+            android:id="@+id/textViewMessage"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:keepScreenOn="true"
@@ -38,7 +38,7 @@
             android:textColor="@color/text_app" />
 
         <TextView
-            android:id="@+id/messageMove"
+            android:id="@+id/textViewContextual"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:keepScreenOn="true"

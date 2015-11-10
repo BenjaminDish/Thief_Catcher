@@ -8,5 +8,6 @@
     <string name="message_no_detection_choise">Choisissez un mode de déclenchement.</string>
     <string name="message_no_desactivation_code_choise">Vous devez choisir un code de désactivation.</string>
     <string name="message_sms_message_no_choise">Vous devez choisir un sms à envoyer pour déclencher l\'alarme à distance.</string>
-
+    <string name="contextual_message_activation_move">Posez votre appareil</string>
+    <string name="contextual_message_activation_charge">Ne débranchez pas votre appareil</string>
 </resources>
