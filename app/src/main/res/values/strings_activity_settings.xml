@@ -17,13 +17,11 @@
         <item>poney</item>
     </string-array>
 
-
     <!-- string pour le slider mouvement -->
     <string name="pref_slider_mouvement_title">Sensibilité du capteur de mouvement</string>
     <string name="pref_slider_mouvement_dialog_message">Permet de régler la sensibilité du capteur de mouvement</string>
     <string name="pref_slider_mouvement_summary">Valeur courante : $1 %</string>
     <string name="pref_slider_mouvement_unit">%</string>
-
 
     <!-- string pour le slider activation -->
     <string name="pref_slider_activation_title">Délai d\'activation</string>
@@ -101,7 +99,6 @@
         <item>block</item>
     </string-array>
 
-
     <!-- string pour le choix du texte alarme -->
     <string name="pref_texte_alarme_title">Choix du texte affiché par l\'alarme</string>
     <string name="pref_texte_alarme_summary">Valeur courante : $1</string>
@@ -109,10 +106,7 @@
     <!-- string pour le choix du code PIN -->
     <string name="pref_PIN_title">Choix du code pour dévérouiller l\'alarme</string>
     <string name="pref_PIN_summary">Valeur courante : </string>
-    <string name="pref_PIN_dialog_message">4 caractère max</string>
-
-
-
+    <string name="pref_PIN_dialog_message">4 caractères max</string>
 </resources>
 
 

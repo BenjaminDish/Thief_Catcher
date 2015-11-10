@@ -1,6 +1,5 @@
 package com.example.benjamin.thief_catcher;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -18,19 +17,13 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-
-
-    ImageButton imageButtonLock;
-    ImageButton imageButtonMove;
-    ImageButton imageButtonSms;
-    ImageButton imageButtonCharge;
-    public Boolean useMove = false;
-    public Boolean useCharge = false;
-    public Boolean useSms = false;
-    private Toast toast;
-    private SharedPreferences sharedPref;
-
-
+    private ImageButton imageButtonLock;
+    private ImageButton imageButtonMove;
+    private ImageButton imageButtonSms;
+    private ImageButton imageButtonCharge;
+    private Boolean useMove = false;
+    private Boolean useCharge = false;
+    private Boolean useSms = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,20 +31,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         imageButtonMove = (ImageButton) this.findViewById(R.id.imageButtonMove);
-        imageButtonMove.setImageResource(R.drawable.ic_screen_rotation_black);
-        imageButtonMove.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.red_button));
-
         imageButtonCharge = (ImageButton) this.findViewById(R.id.imageButtonCharge);
-        imageButtonCharge.setImageResource(R.drawable.ic_power_black);
-        imageButtonCharge.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.red_button));
-
         imageButtonSms = (ImageButton) this.findViewById(R.id.imageButtonSms);
-        imageButtonSms.setImageResource(R.drawable.ic_message_black);
-        imageButtonSms.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.red_button));
-
         imageButtonLock = (ImageButton) this.findViewById(R.id.imageButtonLock);
-        imageButtonLock.setImageResource(R.drawable.unlockicon);
 
+        /**Initialisation du layout*/
+        D_Init_Layout();
+
+        /**Activation des listeners sur les boutons*/
         imageButtonMove.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 D_MoveClicked();
@@ -72,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
                 D_LockClicked();
             }
         });
-
     }
 
     @Override
@@ -84,119 +70,182 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        /** Lancement du menu Settings quand on clique sur 'Settings' dans les options de la barre d'application*/
         if (id == R.id.action_settings) {
-            // Le premier paramètre est le nom de l'activité actuelle
-            // Le second est le nom de l'activité de destination
-            Intent secondeActivite = new Intent(MainActivity.this, SettingsActivity.class);
-            startActivity(secondeActivite);
+            LI_LaunchSettingsActivity();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    /**Fonction de dialogue apellée à l'initilisation des composants*/
+    private void D_Init_Layout(){
+        useMove = false;
+        useCharge = false;
+        useSms = false;
+        LI_MoveButton_Refresh();
+        LI_ChargeButton_Refresh();
+        LI_SmsButton_Refresh();
+    }
+
+    /**Fonction de dialogue apellée à chaque click sur le bouton Mouvement*/
     private void D_MoveClicked(){
-        if (useMove == false){
-            useMove = true;
+        //Changement d'êtat du bouton (checked/unchecked)
+        useMove = !useMove;
+        LI_MoveButton_Refresh();
+    }
+
+    /**Fonction de dialogue apellée à chaque click sur le bouton Chargeur*/
+    private void D_ChargeClicked(){
+
+        // L'appareil est-il branché ?
+        boolean isCharging = LI_isDeviceCharging();
+
+        if (isCharging) {
+            //Changement d'êtat du bouton (checked/unchecked)
+            useCharge = !useCharge;
+            LI_ChargeButton_Refresh();
+        }
+        else {
+            //On blocke cette fonctionalité
+            useCharge = false;
+            LI_ChargeButton_Refresh();
+
+            // On informe l'utilisateur que cette fonctionnalité n'est pas accessible dans l'êtat
+            LI_showMessage(getString(R.string.message_charge_disable));
+        }
+    }
+
+    /**Fonction de dialogue apellée à chaque click sur le bouton Sms*/
+    private void D_SmsClicked(){
+        if (!LI_canDeviceReceiveSms()) {
+            //On blocke cette fonctionalité
+            useSms = false;
+            LI_SmsButton_Refresh();
+
+            // On informe l'utilisateur que cette fonctionnalité n'est pas accessible dans l'êtat
+            LI_showMessage(getString(R.string.message_sms_disable));
+        }
+        else if(!LI_isActivationMessageChosen())
+        {
+            LI_showMessage(getString(R.string.message_sms_message_no_choise));
+        }
+        else
+        {
+            //Changement d'êtat du bouton (checked/unchecked)
+            useSms = !useSms;
+            LI_SmsButton_Refresh();
+        }
+    }
+
+    /**Fonction de dialogue apellée à chaque click sur le bouton Lock*/
+    private void D_LockClicked(){
+        if (!(useCharge || useMove || useSms)){ //Si aucun moyen de déclenchement n'a été choisi
+            LI_showMessage(getString(R.string.message_no_detection_choise));
+        }
+        else if(!LI_isActivationCodeChosen()) //Si aucun code de désactivation n'a été choisi
+        {
+            LI_showMessage(getString(R.string.message_no_desactivation_code_choise));
+        }
+        else //Activation de l'alarme
+        {
+            LI_LaunchActivationActivity();
+        }
+    }
+
+    /**Fonction de dialogue qui active le bouton Mouvement si useMove=true, le désactive sinon*/
+    private void LI_MoveButton_Refresh(){
+        if(useMove){
             imageButtonMove.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.green_button));
         }
         else
         {
-            useMove = false;
             imageButtonMove.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.red_button));
         }
     }
-    private void D_ChargeClicked(){
+
+    /**Fonction de dialogue qui active le bouton Chargeur si useCharge=true, le désactive sinon*/
+    private void LI_ChargeButton_Refresh(){
+        if(useCharge){
+            imageButtonCharge.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.green_button));
+        }
+        else
+        {
+            imageButtonCharge.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.red_button));
+        }
+    }
+
+    /**Fonction de dialogue qui active le bouton Sms si useSms=true, le désactive sinon*/
+    private void LI_SmsButton_Refresh(){
+        if(useSms){
+            imageButtonSms.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.green_button));
+        }
+        else
+        {
+            imageButtonSms.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.red_button));
+        }
+    }
+
+    /**Retourne true si l'appareil est branché, false sinon*/
+    private boolean LI_isDeviceCharging(){
         IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         Intent batteryStatus = registerReceiver(null, filter);
-
         int chargeState = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+        boolean resultat;
 
         switch (chargeState) {
             case BatteryManager.BATTERY_STATUS_CHARGING:
-            case BatteryManager.BATTERY_STATUS_FULL:
-                // Le téléphone est branché
-                if (useCharge == false){
-                    useCharge = true;
-                    imageButtonCharge.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.green_button));
-                }
-                else
-                {
-                    useCharge = false;
-                    imageButtonCharge.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.red_button));
-                }
+            case BatteryManager.BATTERY_STATUS_FULL: //Si l'appareil est branché
+                resultat = false;
                 break;
-            default:
-                useCharge = false;
-                imageButtonCharge.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.red_button));
-
-                Context context = getApplicationContext();
-                int duration = Toast.LENGTH_SHORT;
-
-                toast = Toast.makeText(context, "Branchez le téléphone pour pouvoir choisir ce mode de déclenchement.", duration);
-                toast.show();
+            default: //Si l'appareil n'est pas branché
+                resultat = false;
         }
-
-
+        return resultat;
     }
-    private void D_SmsClicked(){
-        if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
-            if (useSms == false){
-                useSms = true;
-                imageButtonSms.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.green_button));
-            }
-            else
-            {
-                useSms = false;
-                imageButtonSms.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.red_button));
-            }
-        } else {
-            useSms = false;
-            imageButtonSms.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.red_button));
 
-            Context context = getApplicationContext();
-            int duration = Toast.LENGTH_SHORT;
-
-            toast = Toast.makeText(context, "Votre appareil ne peut pas recevoir de SMS.", duration);
-            toast.show();
-        }
-
+    /**Retourne true si l'appareil peut recevoir des sms, false sinon*/
+    private boolean LI_canDeviceReceiveSms(){
+        return getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
     }
-    private void D_LockClicked(){
+
+    /**Retourne true si le sms à envoyer pour déclencher l'alarme a été choisi par l'utilisateur, false sinon*/
+    private boolean LI_isActivationMessageChosen(){
+        SharedPreferences sharedPref;
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        return !sharedPref.getString("sms", ("")).equals("");
+    }
+
+    /**Retourne true si le code de désactivation a été choisi par l'utilisateur, false sinon*/
+    private boolean LI_isActivationCodeChosen(){
+        SharedPreferences sharedPref;
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        return !sharedPref.getString("pin", ("")).equals("");
+    }
+
+    /**Affiche le message à l'utilisateur sous forme de pop-up (toast android)*/
+    private void LI_showMessage(String message){
+        Toast toast;
+        int duration = Toast.LENGTH_SHORT;
+        toast = Toast.makeText(getApplicationContext(), message, duration);
+        toast.show();
+    }
+
+    /**Ouvre la fenêtre temporaire avant l'activation*/
+    private void LI_LaunchActivationActivity(){
         Intent activationIntent = new Intent(this, ActivationActivity.class);
         activationIntent.putExtra("useCharge", useCharge);
         activationIntent.putExtra("useMove", useMove);
         activationIntent.putExtra("useSms", useSms);
-
-        //On regarde si au moins un mode de déclenchement est séléctionné
-        if (useCharge || useMove || useSms){
-
-            //On regarde si l'utilisateur à choisit un code de désactivation
-            sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-            if(!sharedPref.getString("pin", ("-1")).equals("-1")) {
-                        startActivity(activationIntent);
-            }
-            else{
-                Context context = getApplicationContext();
-                int duration = Toast.LENGTH_SHORT;
-
-                toast = Toast.makeText(context, "Vous devez choisir un code de désactivation.", duration);
-                toast.show();
-            }
-        }
-        else{
-            Context context = getApplicationContext();
-            int duration = Toast.LENGTH_SHORT;
-
-            toast = Toast.makeText(context, "Choisissez un mode de déclenchement.", duration);
-            toast.show();
-        }
+        startActivity(activationIntent);
     }
 
+    /**Ouvre la fenêtre de réglage des paramètres*/
+    private void LI_LaunchSettingsActivity(){
+        Intent settingsActivity = new Intent(MainActivity.this, SettingsActivity.class);
+        startActivity(settingsActivity);
+    }
 }

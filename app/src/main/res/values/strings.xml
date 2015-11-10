@@ -3,4 +3,10 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_activation">ActivationActivity</string>
     <string name="title_activity_alarm">AlarmActivity</string>
+    <string name="message_charge_disable">Branchez le téléphone pour pouvoir choisir ce mode de déclenchement.</string>
+    <string name="message_sms_disable">Votre appareil ne peut pas recevoir de SMS.</string>
+    <string name="message_no_detection_choise">Choisissez un mode de déclenchement.</string>
+    <string name="message_no_desactivation_code_choise">Vous devez choisir un code de désactivation.</string>
+    <string name="message_sms_message_no_choise">Vous devez choisir un sms à envoyer pour déclencher l\'alarme à distance.</string>
+
 </resources>

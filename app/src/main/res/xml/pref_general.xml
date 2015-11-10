@@ -1,6 +1,5 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-
     <!-- Theme sonore -->
     <ListPreference
         android:key="theme_sonore"
@@ -12,7 +11,6 @@
         android:negativeButtonText="@null"
         android:positiveButtonText="@null" />
 
-
     <!-- Slider sensibilité mouvement -->
     <com.example.benjamin.thief_catcher.SeekBarPreference
         android:key="slider_mouvement"
@@ -23,7 +21,6 @@
         android:summary="@string/pref_slider_mouvement_summary"
         android:text="@string/pref_slider_mouvement_unit" />
 
-
     <!-- Slider delai activation -->
     <com.example.benjamin.thief_catcher.SeekBarListPreference
         android:key="slider_activation"
@@ -33,7 +30,6 @@
         android:entries="@array/pref_slider_activation_entries"
         android:entryValues="@array/pref_slider_activation_entries_values"
         android:summary="@string/pref_slider_activation_summary" />
-
 
     <!-- Slider delai de déclenchement -->
     <com.example.benjamin.thief_catcher.SeekBarListPreference
@@ -49,14 +45,12 @@
     <ListPreference
         android:key="sms"
         android:title="@string/pref_SMS_title"
-        android:defaultValue="1"
+        android:defaultValue=""
         android:entries="@array/pref_SMS_entries"
         android:entryValues="@array/pref_SMS_entries_values"
         android:summary="@string/pref_SMS_summary"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null" />
-
-
 
     <!-- Choix du message à afficher -->
     <EditTextPreference
@@ -74,5 +68,4 @@
         android:inputType="numberPassword"
         android:maxLength="4"
         />
-
 </PreferenceScreen>

@@ -52,7 +52,7 @@
                 android:layout_height="fill_parent"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Mouvement"
-                android:id="@+id/textView3"
+                android:id="@+id/textViewMove"
                 android:layout_weight="3"
                 android:gravity="top|center_horizontal"
                 android:textColor="@color/fond_app"
@@ -82,7 +82,7 @@
                 android:layout_height="fill_parent"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Chargeur"
-                android:id="@+id/textView2"
+                android:id="@+id/textViewCharge"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="3"
                 android:gravity="top|center_horizontal"
@@ -116,12 +116,13 @@
                 android:layout_height="fill_parent"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Message"
-                android:id="@+id/textView"
+                android:id="@+id/textViewSms"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="3"
                 android:gravity="top|center_horizontal"
                 android:textColor="@color/fond_app"
                 android:textSize="25dp" />
+
         </LinearLayout>
 
     </LinearLayout>
@@ -156,7 +157,7 @@
         android:layout_height="fill_parent"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Alarme Désactivée"
-        android:id="@+id/textViewLocked"
+        android:id="@+id/textViewUnlocked"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.7"
         android:gravity="top|center_horizontal"
