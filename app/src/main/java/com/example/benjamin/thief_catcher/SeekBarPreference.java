@@ -13,6 +13,12 @@ package com.example.benjamin.thief_catcher;
         import android.widget.SeekBar;
         import android.widget.TextView;
 
+/**
+ *
+ * Cette classe a été copiée depuis un code trouvé sur internet.
+ * Elle implémente le "Slider préférence" utilisé dans l'application.
+ *
+ * */
 
 public class SeekBarPreference extends DialogPreference implements SeekBar.OnSeekBarChangeListener, OnClickListener
 {
@@ -126,7 +132,8 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
     @Override
     public void onStopTrackingTouch(SeekBar seek) {}
 
-    public void setMax(int max) { mMax = max; }
+    // Fonctions importées non-utilisées
+    /**public void setMax(int max) { mMax = max; }
     public int getMax() { return mMax; }
 
     public void setProgress(int progress) {
@@ -134,7 +141,7 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
         if (mSeekBar != null)
             mSeekBar.setProgress(progress);
     }
-    public int getProgress() { return mValue; }
+    public int getProgress() { return mValue; }*/
     // ------------------------------------------------------------------------------------------
 
 
@@ -154,13 +161,12 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
     public void onClick(View v) {
 
         if (shouldPersist()) {
-
             mValue = mSeekBar.getProgress();
             persistInt(mSeekBar.getProgress());
             callChangeListener(Integer.valueOf(mSeekBar.getProgress()));
         }
 
-        ((AlertDialog) getDialog()).dismiss();
+        getDialog().dismiss();
     }
     // ------------------------------------------------------------------------------------------
 }

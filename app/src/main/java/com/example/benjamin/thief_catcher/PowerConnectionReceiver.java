@@ -10,14 +10,17 @@ public class PowerConnectionReceiver extends BroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent)
     {
-        if (intent.getAction().equals(intent.ACTION_BATTERY_CHANGED)) //On agit que si l'etat de la batterie à changé
+        if (!Alarm.getStatus()) //Si l'alarme n'est pas déjà activée
         {
-            if (! LI_isDeviceCharging(intent)) { //Si l'appareil est débranché
-                // Déclenchement de l'alarme
-                try {
-                    Alarm.start(context);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            if (intent.getAction().equals(intent.ACTION_BATTERY_CHANGED)) //On agit que si l'etat de la batterie à changé
+            {
+                if (!LI_isDeviceCharging(intent)) { //Si l'appareil est débranché
+                    // Déclenchement de l'alarme
+                    try {
+                        Alarm.start(context);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }

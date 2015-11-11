@@ -157,9 +157,6 @@ public class AlarmActivity extends AppCompatActivity{
         if(useCharge) {
             this.unregisterReceiver(this.chargeReceiver);
         }
-        if(useMove) {
-            moveListener.stopListening();
-        }
     }
 
     /** Ouvre une fenêtre avec clavier numérique qui permet de taper le code de désactivation*/

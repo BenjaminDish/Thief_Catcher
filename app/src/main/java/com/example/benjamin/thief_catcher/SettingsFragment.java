@@ -3,6 +3,7 @@ package com.example.benjamin.thief_catcher;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
+import android.preference.ListPreference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
@@ -11,108 +12,149 @@ import android.view.ViewGroup;
 
 public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener{
 
-    private SeekBarPreference _seekBarPref;
-    private EditTextPreference messageAlarme;
-    private SeekBarListPreference delaiActivation;
-    private SeekBarListPreference delaiDeclenchement;
+    private SeekBarPreference sensibiliteSlider;
+    private EditTextPreference messageAlarmeEdit;
+    private SeekBarPreference delaiActivationSlider;
+    private SeekBarPreference delaiDeclenchementSlider;
+    private EditTextPreference codeDesactivationEdit;
+    private ListPreference sonnerieList;
+    private ListPreference smsList;
+    private SharedPreferences sharedPref;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Load the preferences from an XML resource
+
+        // Charge les preferences depuis le fichier xml
         addPreferencesFromResource(R.xml.pref_general);
 
-
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
 
         // Get widgets :
-        _seekBarPref = (SeekBarPreference) this.findPreference("slider_mouvement");
-        messageAlarme = (EditTextPreference) this.findPreference("text_alarme");
-        delaiActivation = (SeekBarListPreference) this.findPreference("slider_activation");
-        delaiDeclenchement = (SeekBarListPreference) this.findPreference("slider_déclenchement");
+        sensibiliteSlider = (SeekBarPreference) this.findPreference("slider_mouvement");
+        messageAlarmeEdit = (EditTextPreference) this.findPreference("text_alarme");
+        delaiActivationSlider = (SeekBarPreference) this.findPreference("slider_activation");
+        delaiDeclenchementSlider = (SeekBarPreference) this.findPreference("slider_déclenchement");
+        codeDesactivationEdit = (EditTextPreference) this.findPreference("pin");
+        sonnerieList = (ListPreference) this.findPreference("theme_sonore");
+        smsList = (ListPreference) this.findPreference("sms");
 
-
-
-
-
-        // Sensibilité mouvement summary :
-        int sensibilite = sharedPref.getInt("slider_mouvement", 50);
-        _seekBarPref.setSummary(this.getString(R.string.pref_slider_mouvement_summary).replace("$1", "" + sensibilite));
-
-        //Message alarme summary
-        String text = sharedPref.getString("text_alarme", "voleur");
-        messageAlarme.setSummary(this.getString(R.string.pref_texte_alarme_summary ).replace("$1", "" + text));
-
-        //Delai activation summary
-        String delai1 = sharedPref.getString("slider_activation" , "0");
-        delaiActivation.setSummary(this.getString(R.string.pref_slider_activation_summary).replace("$1", "" + delai1));
-
-        //Delai declenchement summary
-        String delai2 = sharedPref.getString("slider_déclenchement" , "0");
-        delaiDeclenchement.setSummary(this.getString(R.string.pref_slider_déclenchement_summary).replace("$1", "" + delai2));
-
-
+        //Maj des summary pour toutes les preferences au chargement
+        LI_MajSummarySensibilité();
+        LI_MajSummeryActivation();
+        LI_MajSummeryCode();
+        LI_MajSummeryDeclenchement();
+        LI_MajSummerySms();
+        LI_MajSummerySonnerie();
+        LI_MajSummeryMessage();
     }
 
-
+    //Maj des summary pour toutes les preferences quand elles changent
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
 
-        if(key.equals("slider_mouvement")) {
-            int radius = sharedPref.getInt("slider_mouvement", 50);
-            _seekBarPref.setSummary(this.getString(R.string.pref_slider_mouvement_summary).replace("$1", "" + radius));
-
+        switch(key) {
+            case "slider_mouvement":
+                LI_MajSummarySensibilité();
+                break;
+            case "text_alarme":
+                LI_MajSummeryMessage();
+                break;
+            case "slider_activation":
+                LI_MajSummeryActivation();
+                break;
+            case "slider_déclenchement":
+                LI_MajSummeryDeclenchement();
+                break;
+            case "pin":
+                LI_MajSummeryCode();
+                break;
+            case "sms":
+                LI_MajSummerySms();
+                break;
+            case "theme_sonore":
+                LI_MajSummerySonnerie();
+                break;
+            default:
+                break;
         }
-
-        if(key.equals("text_alarme")) {
-            String text = sharedPref.getString("text_alarme", "voleur");
-            messageAlarme.setSummary(this.getString(R.string.pref_texte_alarme_summary ).replace("$1", "" + text));
-        }
-
-        if(key.equals("slider_activation")) {
-            String delai1 = sharedPref.getString("slider_activation", "5");
-            delaiActivation.setSummary(this.getString(R.string.pref_slider_activation_summary ).replace("$1", "" + delai1));
-        }
-
-        if(key.equals("slider_déclenchement")) {
-            String delai2 = sharedPref.getString("slider_déclenchement" , "0");
-            delaiDeclenchement.setSummary(this.getString(R.string.pref_slider_déclenchement_summary).replace("$1", "" + delai2));
-        }
-
-
     }
 
+    //Maj du summary sensibilité du capteur de mouvement
+    private void LI_MajSummarySensibilité(){
+        int sensibilite = sharedPref.getInt("slider_mouvement", 50);
+        sensibiliteSlider.setSummary(this.getString(R.string.pref_slider_mouvement_summary).replace("$1", "" + sensibilite));
+    }
+
+    //Maj du summary délai d'activation
+    private void LI_MajSummeryActivation(){
+        int delaiActivation = sharedPref.getInt("slider_activation", 5);
+        delaiActivationSlider.setSummary(this.getString(R.string.pref_slider_activation_summary).replace("$1", "" + delaiActivation));
+    }
+
+    //Maj du summary délai de déclenchement
+    private void LI_MajSummeryDeclenchement(){
+        int delaiDéclenchement = sharedPref.getInt("slider_déclenchement", 5);
+        delaiDeclenchementSlider.setSummary(this.getString(R.string.pref_slider_déclenchement_summary).replace("$1", "" + delaiDéclenchement));
+    }
+
+    //Maj du summary code de désactivation
+    private void LI_MajSummeryCode(){
+        String code = sharedPref.getString("pin", "");
+        codeDesactivationEdit.setSummary(this.getString(R.string.pref_PIN_summary).replace("$1", "" + code));
+    }
+
+    //Maj du summary thème sonnore
+    private void LI_MajSummerySonnerie(){
+        String sonnerie = sharedPref.getString("theme_sonore", "usa");
+        switch(sonnerie){
+            case "usa" :
+                sonnerie = "Sirène 1";
+                break;
+            case "fr" :
+                sonnerie = "Sirène 2";
+                break;
+            case "poney" :
+                sonnerie = "Petit Poney";
+                break;
+            default :
+                break;
+        }
+        sonnerieList.setSummary(this.getString(R.string.pref_theme_sonore_summary).replace("$1", "" + sonnerie));
+    }
+
+    //Maj du summary sms de déclenchement
+    private void LI_MajSummerySms(){
+        String sms = sharedPref.getString("sms", "ring");
+        if(!sms.equals("")) {
+            sms = sms.concat("+pin");
+        }
+        smsList.setSummary(this.getString(R.string.pref_SMS_summary).replace("$1", "" + sms));
+    }
+
+    //Maj du summary message
+    private void LI_MajSummeryMessage(){
+        String message = sharedPref.getString("text_alarme", "Ce portable a été volé.");
+        messageAlarmeEdit.setSummary(this.getString(R.string.pref_texte_alarme_summary).replace("$1", "" + message));
+    }
 
     @Override
     public void onResume() {
         super.onResume();
-        getPreferenceScreen().getSharedPreferences()
-                .registerOnSharedPreferenceChangeListener(this);
+        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        getPreferenceScreen().getSharedPreferences()
-                .unregisterOnSharedPreferenceChangeListener(this);
+        getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
     }
 
-
-
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-
-
-
         View v = inflater.inflate(R.layout.settinglayout, container, false);
-
-
         return v;
     }
 

@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.preference.PreferenceManager;
 import android.widget.TextView;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -23,6 +22,8 @@ public class Alarm {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 
         if(!isActive) {
+            isActive = true;
+
             // Attente du delai de déclenchement de l'alarme
             Thread.sleep(alarmDelay * 1000);
 
@@ -39,19 +40,17 @@ public class Alarm {
             mediaPlayer = MediaPlayer.create(context, identif);
             mediaPlayer.setLooping(true);
             mediaPlayer.start();
-
-            isActive = true;
         }
     }
 
     /** Arrête l'effet de l'alarme */
     public static void stop(){
         if(isActive) {
+            isActive = false;
             if (mediaPlayer != null) {
                 mediaPlayer.release();
                 chronoClign.cancel();
             }
-            isActive = false;
         }
     }
 
@@ -60,12 +59,11 @@ public class Alarm {
         taskClignotement = tClign;
         textView = text;
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        alarmDelay = Integer.parseInt(sharedPref.getString("slider_déclenchement", "0"));
+        alarmDelay = sharedPref.getInt("slider_déclenchement", 0);
     }
 
     /** Renvoie true si l'alarme est déclenchée et false sinon*/
     public static boolean getStatus(){
         return isActive;
     }
-
 }

@@ -15,14 +15,17 @@ public class SMSReceiver extends BroadcastReceiver
     @Override
     public void onReceive(Context context, Intent intent)
     {
-        if (intent.getAction().equals(ACTION_RECEIVE_SMS)) //On agit que si on a bien reçu un sms
+        if (!Alarm.getStatus()) //Si l'alarme n'est pas déjà activée
         {
-            if (LI_isSmsActivation(context, intent)) { //Si le sms reçu est le bon
-                // Déclenchement de l'alarme
-                try {
-                    Alarm.start(context);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            if (intent.getAction().equals(ACTION_RECEIVE_SMS)) //On agit que si on a bien reçu un sms
+            {
+                if (LI_isSmsActivation(context, intent)) { //Si le sms reçu est le bon
+                    // Déclenchement de l'alarme
+                    try {
+                        Alarm.start(context);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }

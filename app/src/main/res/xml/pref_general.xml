@@ -22,24 +22,24 @@
         android:text="@string/pref_slider_mouvement_unit" />
 
     <!-- Slider delai activation -->
-    <com.example.benjamin.thief_catcher.SeekBarListPreference
+    <com.example.benjamin.thief_catcher.SeekBarPreference
         android:key="slider_activation"
         android:title="@string/pref_slider_activation_title"
-        android:defaultValue="0"
+        android:defaultValue="5"
         android:dialogMessage="@string/pref_slider_activation_dialog_message"
-        android:entries="@array/pref_slider_activation_entries"
-        android:entryValues="@array/pref_slider_activation_entries_values"
-        android:summary="@string/pref_slider_activation_summary" />
+        android:max="10"
+        android:summary="@string/pref_slider_activation_summary"
+        android:text="@string/pref_slider_activation_unit"/>
 
     <!-- Slider delai de déclenchement -->
-    <com.example.benjamin.thief_catcher.SeekBarListPreference
+    <com.example.benjamin.thief_catcher.SeekBarPreference
         android:key="slider_déclenchement"
         android:title="@string/pref_slider_déclenchement_title"
         android:defaultValue="5"
         android:dialogMessage="@string/pref_slider_déclenchement_dialog_message"
-        android:entries="@array/pref_slider_déclenchement_entries"
-        android:entryValues="@array/pref_slider_déclenchement_entries_values"
-        android:summary="@string/pref_slider_déclenchement_summary" />
+        android:max="10"
+        android:summary="@string/pref_slider_déclenchement_summary"
+        android:text="@string/pref_slider_déclenchement_unit"/>
 
     <!-- Choix du SMS d'activation -->
     <ListPreference
@@ -67,5 +67,6 @@
         android:dialogMessage="@string/pref_PIN_dialog_message"
         android:inputType="numberPassword"
         android:maxLength="4"
+        android:summary="@string/pref_PIN_summary"
         />
 </PreferenceScreen>

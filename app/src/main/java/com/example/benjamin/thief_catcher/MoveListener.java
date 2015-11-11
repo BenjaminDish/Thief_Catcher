@@ -18,30 +18,27 @@ public class MoveListener implements SensorEventListener {
         this.context = context;
         this.mSensorManager = mSensorManager;
 
-        //Récupération de la sensibilité dans les settings
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        Integer valeur = sharedPref.getInt("slider_mouvement", 50);
-        motionSensibility = (float) (100 - valeur) / 10.0;
+        //Initialisation des valeurs
+        LI_InitiateValues();
 
         //Abonnement au listener de mouvement
         Sensor accelerometerSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mSensorManager.registerListener(this, accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
-    /** Désabonnenement au listener*/
-    public void stopListening(){
-        mSensorManager.unregisterListener(this);
-    }
-
     /** Méthode appellée sur détection d'un mouvement du téléphone*/
     @Override
     public final void onSensorChanged(SensorEvent event){
-        if(LI_isMovementAccepted(event)){
-            // Déclenchement de l'alarme
-            try {
-                Alarm.start(context);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        if (!Alarm.getStatus()) //Si l'alarme n'est pas déjà activée
+        {
+            if (LI_isMovementAccepted(event)) {
+                // Déclenchement de l'alarme
+                LI_stopListening();
+                try {
+                    Alarm.start(context);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -51,6 +48,11 @@ public class MoveListener implements SensorEventListener {
         // Cette méthode est inutilisée ici mais doit être implémentée.
     }
 
+    /** Désabonnenement au listener*/
+    public void LI_stopListening(){
+        mSensorManager.unregisterListener(this);
+    }
+
     /** Evalue si un mouvement est suffisant pour déclencher l'alarme. Retourne true si il est suffisant, false sinon*/
     private boolean LI_isMovementAccepted(SensorEvent event){
         //On récupère les accélérations selon les axes x et y de l'appareil
@@ -58,5 +60,13 @@ public class MoveListener implements SensorEventListener {
         float accY = event.values[1];
         //On calcule si le mouvement est assez vif pour déclencher l'alarme (en fonction de la sensibilité)
         return Math.abs(accX)> motionSensibility + 1 || Math.abs(accY)> motionSensibility + 1;
+    }
+
+    /** Charge les valeurs nécessaire à cette classe*/
+    private void LI_InitiateValues(){
+        //Récupération de la sensibilité dans les settings
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        Integer valeur = sharedPref.getInt("slider_mouvement", 50);
+        motionSensibility = (float) (100 - valeur) / 10.0;
     }
 }

@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
         /** Lancement du menu Settings quand on clique sur 'Settings' dans les options de la barre d'application*/
         if (id == R.id.action_settings) {
-            LI_LaunchSettingsActivity();
+            LI_LaunchSettingsFragment();
             return true;
         }
 
@@ -199,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
         switch (chargeState) {
             case BatteryManager.BATTERY_STATUS_CHARGING:
             case BatteryManager.BATTERY_STATUS_FULL: //Si l'appareil est branché
-                resultat = false;
+                resultat = true;
                 break;
             default: //Si l'appareil n'est pas branché
                 resultat = false;
@@ -244,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**Ouvre la fenêtre de réglage des paramètres*/
-    private void LI_LaunchSettingsActivity(){
+    private void LI_LaunchSettingsFragment(){
         Intent settingsActivity = new Intent(MainActivity.this, SettingsActivity.class);
         startActivity(settingsActivity);
     }

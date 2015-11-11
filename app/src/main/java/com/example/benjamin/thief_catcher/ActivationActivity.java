@@ -74,7 +74,7 @@ public class ActivationActivity extends Activity {
     private void LI_initValues(){
         //Récupération de la valeur du temps d'activation
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        activationTime = Integer.parseInt(sharedPref.getString("slider_activation", "5"));
+        activationTime = sharedPref.getInt("slider_activation", 5);
 
         //Récupération des variables passées par la mainActivity
         if(getIntent().getExtras() != null){

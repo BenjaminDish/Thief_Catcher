@@ -34,8 +34,8 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="15dp">
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="8dp">
 
             <ImageButton
                 android:layout_width="fill_parent"
@@ -54,9 +54,9 @@
                 android:text="Mouvement"
                 android:id="@+id/textViewMove"
                 android:layout_weight="3"
-                android:gravity="top|center_horizontal"
                 android:textColor="@color/fond_app"
-                android:textSize="25dp" />
+                android:textSize="15dp"
+                android:gravity="top|center_horizontal" />
         </LinearLayout>
 
         <LinearLayout
@@ -64,8 +64,8 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp">
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp">
 
             <ImageButton
                 android:layout_width="fill_parent"
@@ -85,9 +85,9 @@
                 android:id="@+id/textViewCharge"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="3"
-                android:gravity="top|center_horizontal"
                 android:textColor="@color/fond_app"
-                android:textSize="25dp" />
+                android:textSize="15dp"
+                android:gravity="top|center_horizontal" />
         </LinearLayout>
 
         <LinearLayout
@@ -96,8 +96,8 @@
             android:layout_height="fill_parent"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="30dp">
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="16dp">
 
             <ImageButton
                 android:layout_width="fill_parent"
@@ -119,9 +119,9 @@
                 android:id="@+id/textViewSms"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="3"
-                android:gravity="top|center_horizontal"
                 android:textColor="@color/fond_app"
-                android:textSize="25dp" />
+                android:textSize="15dp"
+                android:gravity="top|center_horizontal" />
 
         </LinearLayout>
 
@@ -144,10 +144,10 @@
         android:id="@+id/imageButtonLock"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.6"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:background="@color/fond_app"
         android:clickable="true"
         android:src="@drawable/ic_unlocked" />

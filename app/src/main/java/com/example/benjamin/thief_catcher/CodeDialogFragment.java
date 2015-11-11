@@ -13,56 +13,65 @@ import android.view.View;
 import android.widget.EditText;
 
 public class CodeDialogFragment extends DialogFragment {
-    private EditText text;
-    Intent intent;
-    private SharedPreferences sharedPref;
+
+    private View layout;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-
-        intent = new Intent(this.getActivity(), MainActivity.class);
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         // Get the layout inflater
         LayoutInflater factory = LayoutInflater.from(this.getActivity());
+        layout = factory.inflate(R.layout.code_dialog_layout, null);
 
-        View layout = factory.inflate(R.layout.code_dialog_layout, null);
+        return LI_InitBuilder();
+    }
+
+    //Fonction appellée en cas de click sur le bouton confirmer
+    private void D_PositiveButtonClicked(){
+        if (LI_isCodeRight()) {
+            LI_BackMainActivity();
+            Alarm.stop();
+        }
+    }
+
+    //Fonction appellée en cas de click sur le bouton annuler
+    private void D_NegativeButtonClicked(){
+        //Inutile pour l'instant mais doit être implémentée
+    }
+
+    //Renvoie true si le code entré est correct, false sinon
+    private boolean LI_isCodeRight(){
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
+        EditText text  = (EditText) layout.findViewById(R.id.edit);
+
+        String codeEntre = text.getText().toString();
+        String codePref = sharedPref.getString("pin", "1234");
+        return codeEntre.equals(codePref);
+    }
+
+    /**Retourne à l'activité d'accueil et détruit celle-ci*/
+    private void LI_BackMainActivity(){
+        Intent alarmActivity = new Intent(this.getActivity(), MainActivity.class);
+        alarmActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(alarmActivity);
+    }
+
+    //Initialise la vue et le comportement du builder
+    private Dialog LI_InitBuilder(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         builder.setView(layout);
-
-
-        text  = (EditText) layout.findViewById(R.id.edit);
-
-
         builder.setMessage("Entrez votre code");
-
         builder.setPositiveButton("Confirmer", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                if (text.getText().toString().equals(sharedPref.getString("pin", "1234"))) {
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    Alarm.stop();
-                }
+                D_PositiveButtonClicked();
             }
         });
         builder.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                // User cancelled the dialog
+                D_NegativeButtonClicked();
             }
-
-
         });
-        builder.create();
 
-
-
-
-
-        // Create the AlertDialog object and return it
         return builder.create();
     }
-
-
-
 }
