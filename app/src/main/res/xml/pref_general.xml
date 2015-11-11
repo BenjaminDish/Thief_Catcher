@@ -12,7 +12,7 @@
         android:positiveButtonText="@null" />
 
     <!-- Slider sensibilité mouvement -->
-    <com.example.benjamin.thief_catcher.SeekBarPreference
+    <com.example.benjamin.thief_catcher.CustomWidgets.SeekBarPreference
         android:key="slider_mouvement"
         android:title="@string/pref_slider_mouvement_title"
         android:defaultValue="50"
@@ -22,7 +22,7 @@
         android:text="@string/pref_slider_mouvement_unit" />
 
     <!-- Slider delai activation -->
-    <com.example.benjamin.thief_catcher.SeekBarPreference
+    <com.example.benjamin.thief_catcher.CustomWidgets.SeekBarPreference
         android:key="slider_activation"
         android:title="@string/pref_slider_activation_title"
         android:defaultValue="5"
@@ -32,7 +32,7 @@
         android:text="@string/pref_slider_activation_unit"/>
 
     <!-- Slider delai de déclenchement -->
-    <com.example.benjamin.thief_catcher.SeekBarPreference
+    <com.example.benjamin.thief_catcher.CustomWidgets.SeekBarPreference
         android:key="slider_déclenchement"
         android:title="@string/pref_slider_déclenchement_title"
         android:defaultValue="5"

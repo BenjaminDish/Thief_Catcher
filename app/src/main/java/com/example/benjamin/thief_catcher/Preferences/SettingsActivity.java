@@ -1,4 +1,4 @@
-package com.example.benjamin.thief_catcher;
+package com.example.benjamin.thief_catcher.Preferences;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

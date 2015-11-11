@@ -1,4 +1,4 @@
-package com.example.benjamin.thief_catcher;
+package com.example.benjamin.thief_catcher.CustomWidgets;
 
         import android.app.AlertDialog;
         import android.content.Context;

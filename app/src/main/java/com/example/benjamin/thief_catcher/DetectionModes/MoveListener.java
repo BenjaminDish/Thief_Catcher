@@ -1,4 +1,4 @@
-package com.example.benjamin.thief_catcher;
+package com.example.benjamin.thief_catcher.DetectionModes;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -7,6 +7,8 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.preference.PreferenceManager;
+
+import com.example.benjamin.thief_catcher.View.Alarm;
 
 public class MoveListener implements SensorEventListener {
 

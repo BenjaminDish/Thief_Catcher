@@ -1,4 +1,4 @@
-package com.example.benjamin.thief_catcher;
+package com.example.benjamin.thief_catcher.View;
 
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -14,6 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import com.example.benjamin.thief_catcher.Preferences.SettingsActivity;
+import com.example.benjamin.thief_catcher.R;
 
 public class MainActivity extends AppCompatActivity {
 

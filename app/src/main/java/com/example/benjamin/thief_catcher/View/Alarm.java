@@ -1,4 +1,4 @@
-package com.example.benjamin.thief_catcher;
+package com.example.benjamin.thief_catcher.View;
 
 import android.content.Context;
 import android.content.SharedPreferences;

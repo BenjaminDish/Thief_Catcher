@@ -1,4 +1,4 @@
-package com.example.benjamin.thief_catcher;
+package com.example.benjamin.thief_catcher.View;
 
 import android.app.FragmentManager;
 import android.content.BroadcastReceiver;
@@ -17,6 +17,12 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.example.benjamin.thief_catcher.DetectionModes.MoveListener;
+import com.example.benjamin.thief_catcher.DetectionModes.PowerConnectionReceiver;
+import com.example.benjamin.thief_catcher.DetectionModes.SMSReceiver;
+import com.example.benjamin.thief_catcher.CustomWidgets.CodeDialogFragment;
+import com.example.benjamin.thief_catcher.R;
 
 import java.util.TimerTask;
 

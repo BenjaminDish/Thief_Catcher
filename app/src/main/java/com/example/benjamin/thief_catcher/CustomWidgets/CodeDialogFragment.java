@@ -1,4 +1,4 @@
-package com.example.benjamin.thief_catcher;
+package com.example.benjamin.thief_catcher.CustomWidgets;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -11,6 +11,10 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+
+import com.example.benjamin.thief_catcher.View.Alarm;
+import com.example.benjamin.thief_catcher.View.MainActivity;
+import com.example.benjamin.thief_catcher.R;
 
 public class CodeDialogFragment extends DialogFragment {
 

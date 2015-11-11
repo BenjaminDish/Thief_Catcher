@@ -1,9 +1,11 @@
-package com.example.benjamin.thief_catcher;
+package com.example.benjamin.thief_catcher.DetectionModes;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.BatteryManager;
+
+import com.example.benjamin.thief_catcher.View.Alarm;
 
 public class PowerConnectionReceiver extends BroadcastReceiver{
 
