@@ -5,14 +5,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.AudioManager;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
@@ -25,17 +20,16 @@ import android.widget.TextView;
 
 import java.util.TimerTask;
 
-public class AlarmActivity extends AppCompatActivity implements SensorEventListener {
+public class AlarmActivity extends AppCompatActivity{
 
     private BroadcastReceiver smsReceiver;
     private BroadcastReceiver chargeReceiver;
-    private SensorManager mSensorManager;
+    private MoveListener moveListener;
     private Boolean useCharge;
     private Boolean useMove;
     private Boolean useSms;
     private ImageButton imageButtonUnlock;
     private Integer couleur_fond;
-    private double motionSensibility;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,26 +80,6 @@ public class AlarmActivity extends AppCompatActivity implements SensorEventListe
         return super.onKeyDown(keyCode, event);
     }
 
-    /** Méthode appellée sur détection d'un mouvement du téléphone*/
-    @Override
-    public final void onSensorChanged(SensorEvent event){
-        if(LI_isMovementAccepted(event)){
-            // Déclenchement de l'alarme
-            try {
-                Alarm.start(this);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            // On se désabonne aux receivers
-            LI_finishReceivers();
-        }
-    }
-
-    @Override
-    public final void onAccuracyChanged(Sensor sensor, int accuracy) {
-        // Cette méthode est inutilisée ici mais doit être implémentée.
-    }
-
     /** Fonction appellée en cas de click du bouton Unlock*/
     private void D_UnLockClicked() {
         LI_OpenCodeKeyboard();
@@ -146,10 +120,6 @@ public class AlarmActivity extends AppCompatActivity implements SensorEventListe
 
     /** Récupère les paramètres nécessaires au fonctionnement de cette activity*/
     private void LI_initValues() {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        Integer valeur = sharedPref.getInt("slider_mouvement", 50);
-        motionSensibility = (float) (100 - valeur) / 10.0;
-
         //Récupération des variables passées par la ActivationActivity
         if(getIntent().getExtras() != null){
             useCharge = getIntent().getBooleanExtra("useCharge", false);
@@ -174,9 +144,8 @@ public class AlarmActivity extends AppCompatActivity implements SensorEventListe
         }
         // Ecoute de l'évènement "mouvement du téléphone"
         if(useMove) {
-            mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-            Sensor accelerometerSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-            mSensorManager.registerListener(this, accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
+            SensorManager mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+            moveListener = new MoveListener(this, mSensorManager);
         }
     }
 
@@ -189,7 +158,7 @@ public class AlarmActivity extends AppCompatActivity implements SensorEventListe
             this.unregisterReceiver(this.chargeReceiver);
         }
         if(useMove) {
-            mSensorManager.unregisterListener(this);
+            moveListener.stopListening();
         }
     }
 
@@ -198,14 +167,5 @@ public class AlarmActivity extends AppCompatActivity implements SensorEventListe
         FragmentManager fragmentManager = getFragmentManager();
         CodeDialogFragment dial = new CodeDialogFragment();
         dial.show(fragmentManager, "edit");
-    }
-
-    /** Evalue si un mouvement est suffisant pour déclencher l'alarme. Retourne true si il est suffisant, false sinon*/
-    private boolean LI_isMovementAccepted(SensorEvent event){
-        //On récupère les accélérations selon les axes x et y de l'appareil
-        float accX = event.values[0];
-        float accY = event.values[1];
-        //On calcule si le mouvement est assez vif pour déclencher l'alarme (en fonction de la sensibilité)
-        return Math.abs(accX)> motionSensibility + 1 || Math.abs(accY)> motionSensibility + 1;
     }
 }
