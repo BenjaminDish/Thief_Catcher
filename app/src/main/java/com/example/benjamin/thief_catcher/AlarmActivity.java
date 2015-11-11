@@ -88,7 +88,7 @@ public class AlarmActivity extends AppCompatActivity implements SensorEventListe
 
     /** Méthode appellée sur détection d'un mouvement du téléphone*/
     @Override
-    public final void onSensorChanged(SensorEvent event) {
+    public final void onSensorChanged(SensorEvent event){
         if(LI_isMovementAccepted(event)){
             // Déclenchement de l'alarme
             try {
