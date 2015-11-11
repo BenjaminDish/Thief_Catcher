@@ -2,11 +2,8 @@ package com.example.benjamin.thief_catcher;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.preference.PreferenceManager;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.widget.TextView;
 
 import java.util.Timer;
@@ -30,7 +27,7 @@ public class Alarm {
             Thread.sleep(alarmDelay * 1000);
 
             // Affichage du message
-            textView.setText(sharedPref.getString("text_alarm", "Ce portable a été volé"));
+            textView.setText(sharedPref.getString("text_alarme", "Ce portable a été volé"));
 
             // Lancement du clignotement bleu/rouge
             chronoClign = new Timer();
@@ -58,9 +55,10 @@ public class Alarm {
         }
     }
 
-    public static void initiate(TimerTask tClign, TextView text, SharedPreferences sharedPref) {
+    public static void initiate(TimerTask tClign, TextView text, Context context) {
         taskClignotement = tClign;
         textView = text;
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         alarmDelay = Integer.parseInt(sharedPref.getString("slider_déclenchement", "0"));
     }
 

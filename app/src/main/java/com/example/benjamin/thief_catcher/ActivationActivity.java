@@ -76,7 +76,7 @@ public class ActivationActivity extends Activity {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         activationTime = Integer.parseInt(sharedPref.getString("slider_activation", "5"));
 
-        //Récupération des variales passées par la mainActivity
+        //Récupération des variables passées par la mainActivity
         if(getIntent().getExtras() != null){
             useCharge = getIntent().getBooleanExtra("useCharge", false);
             useMove = getIntent().getBooleanExtra("useMove", false);

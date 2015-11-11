@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
-public class EditTextDialogFragment extends DialogFragment {
+public class CodeDialogFragment extends DialogFragment {
     private EditText text;
     Intent intent;
     private SharedPreferences sharedPref;
@@ -27,7 +27,7 @@ public class EditTextDialogFragment extends DialogFragment {
         // Get the layout inflater
         LayoutInflater factory = LayoutInflater.from(this.getActivity());
 
-        View layout = factory.inflate(R.layout.dialog_layout, null);
+        View layout = factory.inflate(R.layout.code_dialog_layout, null);
 
         builder.setView(layout);
 

@@ -12,17 +12,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView android:id="@+id/fullscreen_content"
+        <TextView android:id="@+id/textViewMessage"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:keepScreenOn="true"
             android:textStyle="bold"
-            android:textSize="20dp"
+            android:textSize="30dp"
             android:gravity="center"
             android:layout_weight="0.5"
-            android:allowUndo="false" />
+            android:allowUndo="false"
+            android:textColor="@color/text_app"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <TextView android:id="@+id/text2"
+        <TextView android:id="@+id/textViewInfoUnlock"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:keepScreenOn="true"
@@ -42,17 +44,18 @@
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"
             android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/ic_locked" />
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Alarme Activée"
-            android:id="@+id/textViewUnlock"
+            android:id="@+id/textViewLocked"
             android:layout_weight="0.8"
             android:textSize="20dp"
-            android:gravity="center_vertical|center_horizontal"
+            android:gravity="top|center_horizontal"
             android:textColor="@color/text_app" />
     </LinearLayout>
 

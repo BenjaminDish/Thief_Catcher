@@ -150,7 +150,7 @@
         android:layout_marginBottom="30dp"
         android:background="@color/fond_app"
         android:clickable="true"
-        android:src="@drawable/unlockicon" />
+        android:src="@drawable/ic_unlocked" />
 
     <TextView
         android:layout_width="fill_parent"
